@@ -62,6 +62,7 @@ body{
 .select-field:focus{border-color:var(--orange)}
 .badge-green{display:inline-flex;align-items:center;gap:4px;background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3);border-radius:6px;padding:3px 8px;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .badge-green::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green)}
+.badge-full{display:inline-flex;align-items:center;gap:4px;background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3);border-radius:6px;padding:3px 8px;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .label-sm{font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
 .form-gap{display:flex;flex-direction:column;gap:10px}
 .sec-head{display:flex;align-items:center;justify-content:space-between;margin:0 16px 12px}
@@ -437,7 +438,7 @@ body{
   </div>
   <div class="admin-nav">
     <div class="admin-tab active" onclick="adminTab(this,'at-tournaments')">Tournaments</div>
-    <div class="admin-tab" onclick="adminTab(this,'at-registrations')">Registrations</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-registrations')">Players</div>
     <div class="admin-tab" onclick="adminTab(this,'at-deposits')">Deposits</div>
     <div class="admin-tab" onclick="adminTab(this,'at-balances')">Balances</div>
     <div class="admin-tab" onclick="adminTab(this,'at-settings')">Settings</div>
@@ -478,7 +479,7 @@ body{
   <!-- REGISTRATIONS -->
   <div class="admin-section" id="at-registrations">
     <div class="admin-card">
-      <div class="admin-card-title">📝 Tournament Registrations</div>
+      <div class="admin-card-title">👥 Registered Players (Auto-Approved)</div>
       <div id="admin-reg-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
     </div>
   </div>
@@ -637,9 +638,11 @@ async function loadTournaments() {
 function buildTCard(t) {
   const modeLabel = t.mode === 'solo' ? 'Solo' : t.mode === 'duo' ? 'Duo' : 'Squad';
   const feeLabel = t.fee > 0 ? `Entry Fee: <span>৳${t.fee}</span>` : 'Entry: <span>FREE</span>';
+  const slotsLeft = t.slots - (t.registered || 0);
+  const isFull = slotsLeft <= 0;
   return `<div class="t-card">
     <div class="t-card-head">
-      <div><span class="badge-green">Open</span> <span class="t-card-name">${t.name}</span></div>
+      <div><span class="${isFull ? 'badge-full' : 'badge-green'}">${isFull ? 'FULL' : 'Open'}</span> <span class="t-card-name">${t.name}</span></div>
       <div class="t-card-date">📅 ${t.date}</div>
     </div>
     <div class="t-card-body">
@@ -651,31 +654,53 @@ function buildTCard(t) {
         </div>
         <div class="t-meta-item">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <div><div class="t-meta-label">Teams</div><div class="t-meta-val">${t.registered||0} / ${t.slots}</div></div>
+          <div><div class="t-meta-label">Slots</div><div class="t-meta-val" style="color:${isFull?'var(--red)':'var(--text)'}">${t.registered||0} / ${t.slots}</div></div>
         </div>
       </div>
-      <div class="entry-fee">${feeLabel}</div>
-      <button class="orange-btn" onclick="openJoin('${t.id}','${t.name}','${t.mode}',${t.fee})">
-        Join Tournament Now
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </button>
+      <div class="entry-fee">${feeLabel} · <span style="color:${slotsLeft<=5?'var(--red)':'var(--muted)'}">${isFull?'No slots left':slotsLeft+' slots left'}</span></div>
+      ${isFull
+        ? `<button class="orange-btn" disabled style="background:#333;color:var(--muted);cursor:not-allowed">Tournament Full</button>`
+        : `<button class="orange-btn" onclick="openJoin('${t.id}','${t.name}','${t.mode}',${t.fee},${t.slots},${t.registered||0})">
+            Join Tournament Now
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>`
+      }
     </div>
   </div>`;
 }
 
 // ─── JOIN TOURNAMENT ───
-window.openJoin = function(id, name, mode, fee) {
-  joinTournamentData = { id, name, mode, fee };
+window.openJoin = function(id, name, mode, fee, slots, registered) {
+  joinTournamentData = { id, name, mode, fee, slots, registered };
   document.getElementById('join-modal-title').textContent = name;
-  document.getElementById('join-modal-sub').textContent = `${mode.toUpperCase()} · Entry Fee: ${fee > 0 ? '৳'+fee : 'FREE'}`;
+  
+  const bal = currentUserData.balance || 0;
+  const canAfford = fee === 0 || bal >= fee;
+  const feeText = fee > 0 ? `৳${fee} Entry Fee` : 'FREE';
+  const balText = fee > 0 ? ` · Your Balance: <span style="color:${canAfford?'var(--green)':'var(--red)'}">৳${bal.toFixed(2)}</span>` : '';
+  document.getElementById('join-modal-sub').innerHTML = `${mode.toUpperCase()} · ${feeText}${balText}`;
+  
+  if (fee > 0 && !canAfford) {
+    document.getElementById('join-form-fields').innerHTML = `<div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:2rem;margin-bottom:8px">💸</div>
+      <div style="font-weight:700;color:#ef4444;margin-bottom:4px">Not Enough Money!</div>
+      <div style="font-size:.85rem;color:var(--muted)">Entry fee: ৳${fee} · আপনার balance: ৳${bal.toFixed(2)}</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:6px">Profile → Add Money থেকে balance add করুন</div>
+    </div>`;
+    document.querySelector('#join-modal-box .orange-btn').style.display = 'none';
+    document.getElementById('join-modal').style.display = 'flex';
+    return;
+  }
+  
+  document.querySelector('#join-modal-box .orange-btn').style.display = 'flex';
   
   let fields = '';
   if (mode === 'solo') {
     fields = `<div><div class="label-sm">Your Name</div><input class="input-field" id="jf-p1" placeholder="Player Name"></div>`;
   } else if (mode === 'duo') {
     fields = `
-      <div><div class="label-sm">Player 1 Name (IGL)</div><input class="input-field" id="jf-igl" placeholder="IGL Name"></div>
-      <div><div class="label-sm">Player 2 Name</div><input class="input-field" id="jf-p2" placeholder="2nd Player"></div>`;
+      <div><div class="label-sm">IGL Name (Player 1)</div><input class="input-field" id="jf-igl" placeholder="IGL Name"></div>
+      <div><div class="label-sm">2nd Player Name</div><input class="input-field" id="jf-p2" placeholder="2nd Player"></div>`;
   } else {
     fields = `
       <div><div class="label-sm">Team Name</div><input class="input-field" id="jf-team" placeholder="Team Name"></div>
@@ -684,7 +709,8 @@ window.openJoin = function(id, name, mode, fee) {
       <div><div class="label-sm">3rd Player Name</div><input class="input-field" id="jf-p3" placeholder="3rd Player"></div>
       <div><div class="label-sm">4th Player Name</div><input class="input-field" id="jf-p4" placeholder="4th Player"></div>`;
   }
-  fields += `<div><div class="label-sm">Your Free Fire UID</div><input class="input-field" id="jf-uid" placeholder="UID" value="${currentUserData.uid||''}"></div>
+  fields += `
+    <div><div class="label-sm">Your Free Fire UID</div><input class="input-field" id="jf-uid" placeholder="UID" value="${currentUserData.uid||''}"></div>
     <div><div class="label-sm">Your Phone Number</div><input class="input-field" id="jf-phone" placeholder="01XXXXXXXXX"></div>`;
   
   document.getElementById('join-form-fields').innerHTML = fields;
@@ -702,29 +728,85 @@ window.submitJoin = async function() {
   const phone = document.getElementById('jf-phone')?.value?.trim();
   if (!uid || !phone) { showToast('UID ও Phone নম্বর দিন!'); return; }
 
-  let teamData = { mode, uid, phone, tournamentId: id, tournamentName: name, playerEmail: currentUserData.email, status: 'pending', createdAt: serverTimestamp() };
-  if (mode === 'solo') { teamData.p1 = document.getElementById('jf-p1')?.value?.trim(); }
-  else if (mode === 'duo') { teamData.igl = document.getElementById('jf-igl')?.value?.trim(); teamData.p2 = document.getElementById('jf-p2')?.value?.trim(); }
-  else { teamData.teamName = document.getElementById('jf-team')?.value?.trim(); teamData.igl = document.getElementById('jf-igl')?.value?.trim(); teamData.p2 = document.getElementById('jf-p2')?.value?.trim(); teamData.p3 = document.getElementById('jf-p3')?.value?.trim(); teamData.p4 = document.getElementById('jf-p4')?.value?.trim(); }
-
-  // Check balance for entry fee
-  if (fee > 0 && currentUserData.balance < fee) {
-    showToast(`Balance কম! ৳${fee} entry fee লাগবে`); return;
+  // ── Build team data ──
+  let teamData = { mode, uid, phone, tournamentId: id, tournamentName: name, playerEmail: currentUserData.email, status: 'approved', registeredAt: serverTimestamp(), createdAt: serverTimestamp() };
+  if (mode === 'solo') {
+    const p1 = document.getElementById('jf-p1')?.value?.trim();
+    if (!p1) { showToast('নাম দিন!'); return; }
+    teamData.p1 = p1; teamData.displayName = p1;
+  } else if (mode === 'duo') {
+    const igl = document.getElementById('jf-igl')?.value?.trim();
+    const p2 = document.getElementById('jf-p2')?.value?.trim();
+    if (!igl || !p2) { showToast('সব player এর নাম দিন!'); return; }
+    teamData.igl = igl; teamData.p2 = p2; teamData.displayName = igl;
+  } else {
+    const teamName = document.getElementById('jf-team')?.value?.trim();
+    const igl = document.getElementById('jf-igl')?.value?.trim();
+    const p2 = document.getElementById('jf-p2')?.value?.trim();
+    const p3 = document.getElementById('jf-p3')?.value?.trim();
+    const p4 = document.getElementById('jf-p4')?.value?.trim();
+    if (!teamName || !igl) { showToast('Team Name ও IGL Name দিন!'); return; }
+    teamData.teamName = teamName; teamData.igl = igl; teamData.p2 = p2; teamData.p3 = p3; teamData.p4 = p4; teamData.displayName = teamName;
   }
 
+  // ── Balance check ──
+  if (fee > 0) {
+    if (currentUserData.balance < fee) {
+      showToast(`❌ Not enough money! ৳${fee} entry fee লাগবে, আপনার আছে ৳${currentUserData.balance}`);
+      return;
+    }
+  }
+
+  // ── Already registered? ──
   try {
-    await addDoc(collection(db, 'registrations'), teamData);
-    // Deduct fee if applicable
+    const existCheck = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',id), where('playerEmail','==',currentUserData.email)));
+    if (!existCheck.empty) { showToast('⚠️ আপনি ইতিমধ্যে এই tournament এ registered!'); return; }
+  } catch(e) {}
+
+  // ── Slot check ──
+  try {
+    const tSnap = await getDoc(doc(db,'tournaments',id));
+    if (!tSnap.exists()) { showToast('Tournament পাওয়া যায়নি!'); return; }
+    const tData = tSnap.data();
+    if ((tData.registered || 0) >= tData.slots) { showToast('❌ সব slot পূর্ণ!'); return; }
+  } catch(e) {}
+
+  // ── Submit & auto-approve ──
+  try {
+    const submitBtn = document.querySelector('#join-modal-box .orange-btn');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Processing...'; }
+
+    // Save registration (auto approved)
+    await addDoc(collection(db,'registrations'), teamData);
+
+    // Deduct fee & update balance
     if (fee > 0) {
       const newBal = currentUserData.balance - fee;
       const key = currentUserData.email.replace(/\./g,'_').replace(/@/g,'__');
-      await updateDoc(doc(db,'users',key), { balance: newBal });
+      await updateDoc(doc(db,'users',key), { balance: newBal, matches: (currentUserData.matches || 0) + 1 });
       currentUserData.balance = newBal;
+      currentUserData.matches = (currentUserData.matches || 0) + 1;
       document.getElementById('wallet-bal').textContent = newBal.toFixed(2);
+      document.getElementById('stat-matches').textContent = currentUserData.matches;
+    } else {
+      // Free tournament — still update match count
+      const key = currentUserData.email.replace(/\./g,'_').replace(/@/g,'__');
+      await updateDoc(doc(db,'users',key), { matches: (currentUserData.matches || 0) + 1 }).catch(()=>{});
+      currentUserData.matches = (currentUserData.matches || 0) + 1;
+      document.getElementById('stat-matches').textContent = currentUserData.matches;
     }
+
+    // Increment registered count on tournament
+    await updateDoc(doc(db,'tournaments',id), { registered: (await getDoc(doc(db,'tournaments',id))).data().registered + 1 || 1 }).catch(()=>{});
+
     document.getElementById('join-modal').style.display = 'none';
-    showToast('✅ Registration সফল!');
-  } catch(e) { showToast('Error! আবার চেষ্টা করুন'); }
+    loadTournaments();
+    showToast('✅ Registration সফল! Slot confirmed!');
+  } catch(e) {
+    showToast('Error! আবার চেষ্টা করুন: ' + e.message);
+    const submitBtn = document.querySelector('#join-modal-box .orange-btn');
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Confirm Registration'; }
+  }
 }
 
 // ─── LOAD SETTINGS ───
@@ -911,14 +993,65 @@ async function loadAdminRegistrations() {
     list.innerHTML = '';
     snap.forEach(d => {
       const r = d.data();
-      const name = r.teamName || r.igl || r.p1 || 'Unknown';
-      list.innerHTML += `<div class="reg-item">
-        <div class="reg-head"><div class="reg-name">${name}</div><div style="display:flex;gap:6px"><button class="approve-btn" onclick="updateReg('${d.id}','approved')">✓</button><button class="reject-btn" onclick="updateReg('${d.id}','rejected')">✗</button></div></div>
-        <div class="reg-meta">${r.tournamentName} · ${r.mode} · UID: ${r.uid} · 📞 ${r.phone}</div>
-        <div class="reg-meta" style="margin-top:3px">👤 ${r.playerEmail}</div>
+      const displayName = r.teamName || r.igl || r.p1 || 'Unknown';
+      const modeIcon = r.mode === 'solo' ? '👤' : r.mode === 'duo' ? '👥' : '⚔️';
+      list.innerHTML += `<div class="reg-item" style="margin-bottom:10px">
+        <div class="reg-head">
+          <div><div class="reg-name">${modeIcon} ${displayName}</div><span class="txn-status s-approved" style="font-size:.6rem">✅ Registered</span></div>
+          <button class="approve-btn" style="background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.3);color:var(--orange)" onclick="showRegDetails('${d.id}')">Details</button>
+        </div>
+        <div class="reg-meta" style="margin-top:4px">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()} · 📞 ${r.phone}</div>
+        <div class="reg-meta">👤 ${r.playerEmail} · UID: ${r.uid}</div>
       </div>`;
     });
-  } catch(e) {}
+  } catch(e) { console.log(e); }
+}
+
+window.showRegDetails = async function(regId) {
+  try {
+    const snap = await getDoc(doc(db,'registrations',regId));
+    if (!snap.exists()) return;
+    const r = snap.data();
+    let playerInfo = '';
+    if (r.mode === 'solo') {
+      playerInfo = `<div class="reg-meta" style="margin:4px 0">👤 Player: <strong>${r.p1}</strong></div>`;
+    } else if (r.mode === 'duo') {
+      playerInfo = `<div class="reg-meta" style="margin:4px 0">👤 IGL: <strong>${r.igl}</strong></div><div class="reg-meta">👤 2nd: <strong>${r.p2}</strong></div>`;
+    } else {
+      playerInfo = `
+        <div class="reg-meta" style="margin:4px 0">🏷️ Team: <strong>${r.teamName}</strong></div>
+        <div class="reg-meta">👑 IGL: <strong>${r.igl}</strong></div>
+        <div class="reg-meta">👤 2nd: <strong>${r.p2 || '-'}</strong></div>
+        <div class="reg-meta">👤 3rd: <strong>${r.p3 || '-'}</strong></div>
+        <div class="reg-meta">👤 4th: <strong>${r.p4 || '-'}</strong></div>`;
+    }
+    const modal = document.createElement('div');
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
+    modal.innerHTML = `<div style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:16px;padding:20px;width:100%;max-width:380px">
+      <div style="font-family:Barlow Condensed,sans-serif;font-size:1.2rem;font-weight:900;margin-bottom:12px;color:var(--orange)">📋 Registration Details</div>
+      <div class="reg-meta" style="margin:6px 0">🏆 <strong>${r.tournamentName}</strong></div>
+      <div class="reg-meta" style="margin:4px 0">🎮 Mode: <strong>${r.mode?.toUpperCase()}</strong></div>
+      ${playerInfo}
+      <div class="reg-meta" style="margin:4px 0">🔑 UID: <strong>${r.uid}</strong></div>
+      <div class="reg-meta" style="margin:4px 0">📞 Phone: <strong>${r.phone}</strong></div>
+      <div class="reg-meta" style="margin:4px 0">👤 Email: <strong>${r.playerEmail}</strong></div>
+      <div class="reg-meta" style="margin:4px 0">📅 Date: <strong>${r.registeredAt?.toDate?.()?.toLocaleDateString('en-GB') || 'Recently'}</strong></div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <button onclick="this.closest('div[style]').remove()" style="flex:1;padding:10px;background:var(--orange);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif;font-size:.9rem">Close</button>
+        <button onclick="deleteReg('${regId}');this.closest('div[style]').remove()" style="flex:1;padding:10px;background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3);border-radius:8px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif;font-size:.9rem">Remove</button>
+      </div>
+    </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', e => { if(e.target === modal) modal.remove(); });
+  } catch(e) { showToast('Error loading details'); }
+}
+
+window.deleteReg = async function(id) {
+  try {
+    await deleteDoc(doc(db,'registrations',id));
+    showToast('✅ Removed!');
+    loadAdminRegistrations();
+  } catch(e) { showToast('Error!'); }
 }
 
 async function loadAdminDeposits() {
@@ -992,11 +1125,7 @@ window.deleteTournament = async function(id) {
   loadTournaments();
 }
 
-window.updateReg = async function(id, status) {
-  await updateDoc(doc(db,'registrations',id), { status });
-  showToast(status === 'approved' ? '✅ Approved!' : '❌ Rejected!');
-  loadAdminRegistrations();
-}
+// Registration is now fully automatic - no manual approve needed
 
 window.approveDeposit = async function(id, email, amount) {
   try {
@@ -1114,4 +1243,4 @@ function showToast(msg) {
 }
 </script>
 </body>
-</html>
+  </html>
