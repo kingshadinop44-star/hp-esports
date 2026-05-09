@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOC<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1244,3 +1244,198 @@ function showToast(msg) {
 </script>
 </body>
   </html>
+TYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>HP E-SPORTS PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0e0e; --bg2: #141414; --card: #1c1c1c;
+  --silver: #C0C0C0; --silver-bright: #e0e0e0;
+  --orange: #f97316; --red: #ef4444; --green: #22c55e;
+  --text: #f1f1f1; --muted: #888;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Barlow', sans-serif; }
+body { background: var(--bg); color: var(--text); }
+
+/* Header & Silver Theme */
+.header { 
+    padding: 20px; text-align: center; 
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-bottom: 2px solid var(--silver);
+}
+.header h1 { 
+    font-family: 'Barlow Condensed'; font-size: 28px; 
+    color: var(--silver); text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+
+/* Big Admin Panel */
+.admin-container {
+    background: var(--bg2); padding: 25px; margin: 15px;
+    border-radius: 12px; border: 1px solid var(--silver);
+}
+.admin-title { font-size: 22px; margin-bottom: 15px; color: var(--silver); display: block; }
+
+/* Slot Card */
+.slot-card {
+    background: var(--card); border-radius: 10px; padding: 15px; margin-bottom: 15px;
+    border-left: 5px solid var(--orange);
+}
+.slot-info { display: flex; justify-content: space-between; align-items: center; }
+.status-tag { font-size: 12px; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+.status-open { background: var(--green); color: #000; }
+.status-full { background: var(--red); color: #fff; }
+
+/* Buttons */
+.btn { 
+    padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; width: 100%; 
+    transition: 0.3s; margin-top: 10px;
+}
+.btn-reg { background: var(--silver); color: #000; }
+.btn-cancel { background: transparent; border: 1px solid var(--red); color: var(--red); }
+.btn-admin { background: var(--bg3); border: 1px solid var(--muted); color: var(--text); }
+
+/* Custom Toast */
+#toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--silver); color: #000; padding: 12px 25px;
+    border-radius: 50px; font-weight: bold; display: none; z-index: 1000;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>HP E~SPORTS</h1>
+</div>
+
+<div id="app">
+    <div style="padding: 15px;">
+        <div class="slot-card">
+            <div class="slot-info">
+                <div>
+                    <h3>Daily Scrims - T1</h3>
+                    <p id="slot-count">Slots: 0 / 12</p>
+                </div>
+                <div id="slot-status" class="status-tag status-open">OPEN</div>
+            </div>
+            
+            <div id="reg-actions">
+                <button class="btn btn-reg" onclick="handleRegistration()">REGISTER NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--silver); margin: 20px;">
+
+    <div class="admin-container">
+        <span class="admin-title">ADMIN CONTROL PANEL</span>
+        <div style="display: grid; gap: 10px;">
+            <button class="btn btn-admin" onclick="clearData()">RESET ALL SLOTS</button>
+            <button class="btn btn-admin" onclick="exportData()">DOWNLOAD ENTRY LIST</button>
+            <div id="admin-list" style="margin-top: 15px; font-size: 14px; color: var(--muted);">
+                No registrations yet.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// Logic to handle 12 slots and unique ID
+let registeredTeams = JSON.parse(localStorage.getItem('hp_teams')) || [];
+const MAX_SLOTS = 12;
+const USER_ID = "USER_123"; // এইটা ডাইনামিক হবে আপনার সিস্টেম অনুযায়ী
+
+function updateUI() {
+    const countEl = document.getElementById('slot-count');
+    const statusEl = document.getElementById('slot-status');
+    const actionsEl = document.getElementById('reg-actions');
+    const adminList = document.getElementById('admin-list');
+
+    countEl.innerText = `Slots: ${registeredTeams.length} / ${MAX_SLOTS}`;
+
+    // Check if full
+    if (registeredTeams.length >= MAX_SLOTS) {
+        statusEl.innerText = "FULL";
+        statusEl.className = "status-tag status-full";
+    } else {
+        statusEl.innerText = "OPEN";
+        statusEl.className = "status-tag status-open";
+    }
+
+    // Check user status
+    const isRegistered = registeredTeams.includes(USER_ID);
+    if (isRegistered) {
+        actionsEl.innerHTML = `
+            <p style="color: var(--green); margin-bottom: 10px; text-align: center;">✓ Already Registered</p>
+            <button class="btn btn-cancel" onclick="cancelRegistration()">CANCEL REGISTRATION</button>
+        `;
+    } else if (registeredTeams.length >= MAX_SLOTS) {
+        actionsEl.innerHTML = `<button class="btn" style="background:#333; color:#777;" disabled>SLOT FULL</button>`;
+    } else {
+        actionsEl.innerHTML = `<button class="btn btn-reg" onclick="handleRegistration()">REGISTER NOW</button>`;
+    }
+
+    // Update Admin List
+    if (registeredTeams.length > 0) {
+        adminList.innerHTML = "<strong>Registered IDs:</strong><br>" + registeredTeams.join(", ");
+    } else {
+        adminList.innerHTML = "No registrations yet.";
+    }
+}
+
+function handleRegistration() {
+    if (registeredTeams.length >= MAX_SLOTS) {
+        showToast("Sorry! All 12 slots are full.");
+        return;
+    }
+    
+    if (registeredTeams.includes(USER_ID)) {
+        showToast("You have already registered!");
+        return;
+    }
+
+    registeredTeams.push(USER_ID);
+    saveData();
+    showToast("Registered Successfully!");
+}
+
+function cancelRegistration() {
+    registeredTeams = registeredTeams.filter(id => id !== USER_ID);
+    saveData();
+    showToast("Registration Cancelled.");
+}
+
+function clearData() {
+    if(confirm("Are you sure you want to reset all 12 slots?")) {
+        registeredTeams = [];
+        saveData();
+        showToast("All data cleared.");
+    }
+}
+
+function saveData() {
+    localStorage.setItem('hp_teams', JSON.stringify(registeredTeams));
+    updateUI();
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 2500);
+}
+
+// Initial Run
+updateUI();
+</script>
+
+</body>
+</html>
