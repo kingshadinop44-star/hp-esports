@@ -568,7 +568,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, doc, addDoc, setDoc, getDoc, getDocs, updateDoc, deleteDoc, query, orderBy, serverTimestamp, where, increment } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDK2pAl2aJdglZ83i-JulG_jVnfMtAiavo",
@@ -707,12 +707,23 @@ window.doSignup = async function() {
 
 window.doGoogleLogin = async function() {
   try {
-    await signInWithPopup(auth, googleProvider);
-    showToast('✅ Google login সফল!');
+    // Use redirect for mobile browsers
+    await signInWithRedirect(auth, googleProvider);
   } catch(e) {
-    if (e.code !== 'auth/popup-closed-by-user') showToast('❌ Google login failed!');
+    showToast('❌ Google login failed! Email দিয়ে try করুন।');
   }
 }
+
+// Handle redirect result on page load
+getRedirectResult(auth).then((result) => {
+  if (result?.user) {
+    showToast('✅ Google login সফল!');
+  }
+}).catch((e) => {
+  if (e.code && e.code !== 'auth/null-credential') {
+    console.log('Redirect error:', e.code);
+  }
+});
 
 window.doLogout = async function() {
   await signOut(auth);
@@ -1121,4 +1132,4 @@ function adminTab(el,section){document.querySelectorAll('.admin-tab').forEach(t=
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2800);}
 </script>
 </body>
-        </html>
+</html>
