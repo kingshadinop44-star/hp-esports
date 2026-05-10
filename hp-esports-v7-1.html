@@ -698,9 +698,15 @@ window.doSignup = async function() {
     await updateProfile(cred.user, { displayName: name });
     showToast('✅ Account তৈরি হয়েছে!');
   } catch(e) {
-    const msg = e.code === 'auth/email-already-in-use' ? 'Email already registered!' :
-                e.code === 'auth/invalid-email' ? 'Email ভুল!' : 'Signup failed!';
+    const msg = e.code === 'auth/email-already-in-use' ? 'এই email already registered! Login করুন।' :
+                e.code === 'auth/invalid-email' ? 'Email সঠিক নয়!' :
+                e.code === 'auth/weak-password' ? 'Password কমপক্ষে ৬ character দিন!' :
+                e.code === 'auth/network-request-failed' ? 'Internet connection check করুন!' :
+                e.code === 'auth/too-many-requests' ? 'অনেকবার try করেছেন, একটু পরে try করুন!' :
+                e.code === 'auth/operation-not-allowed' ? 'Email/Password auth enabled নেই!' :
+                'Error: ' + e.code + ' - ' + e.message;
     showToast('❌ ' + msg);
+    console.error('Signup error:', e.code, e.message);
   }
   btn.disabled = false; btn.textContent = 'Account তৈরি করুন';
 }
@@ -932,7 +938,8 @@ async function loadMyRegistrations() {
     list.innerHTML='';
     snap.forEach(d=>{
       const r=d.data(),name=r.teamName||r.igl||r.p1||'Unknown';
-      list.innerHTML+=`<div class="t-card"><div class="t-card-head"><div><span class="badge-green">Registered</span> <span class="t-card-name">${name}</span></div><div class="t-card-date">${r.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||''}</div></div><div class="t-card-body"><div class="t-card-map">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()||''}</div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">UID: ${r.uid} · 📞 ${r.phone}</div></div></div>`;
+      list.innerHTML+=`<div class="t-card"><div class="t-card-head"><div><span class="badge-green">Registered</span> <span class="t-card-name">${name}</span></div><div class="t-card-date">${r.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||''}</div></div><div cl
+      ass="t-card-body"><div class="t-card-map">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()||''}</div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">UID: ${r.uid} · 📞 ${r.phone}</div></div></div>`;
     });
   } catch(e) {}
 }
