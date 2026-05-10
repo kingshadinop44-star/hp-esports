@@ -178,7 +178,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
 .filter-tab.active{background:var(--orange);color:#fff}
 
 /* ADMIN */
-.admin-screen{display:none;position:fixed;inset:0;background:var(--bg);z-index:500;overflow-y:auto;width:100%;max-width:100vw}
+.admin-screen{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--bg);z-index:500;overflow-y:auto}
 .admin-screen.active{display:block}
 .admin-header{background:#111;border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
 .admin-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
@@ -532,7 +532,41 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
       <div class="form-gap">
         <div><div class="label-sm">Tournament Name</div><input class="input-field" id="t-name" placeholder="e.g. Blaze Cup S6"></div>
         <div><div class="label-sm">Game Mode</div><select class="select-field" id="t-mode"><option value="solo">Solo (1 player)</option><option value="duo">Duo (2 players)</option><option value="squad">Squad (4 players)</option></select></div>
-        <div><div class="label-sm">Map</div><select class="select-field" id="t-map"><option>Bermuda</option><option>Purgatory</option><option>Kalahari</option><option>Alpine</option></select></div>
+        <div>
+          <div class="label-sm">কতটি Map এ খেলা হবে?</div>
+          <select class="select-field" id="t-map-count" onchange="updateMapCheckboxes()">
+            <option value="1">1 টি Map</option>
+            <option value="2">2 টি Map</option>
+            <option value="3">3 টি Map</option>
+            <option value="4">4 টি Map</option>
+            <option value="5">5 টি Map</option>
+            <option value="6">6 টি Map (সব)</option>
+          </select>
+        </div>
+        <div id="map-checkbox-wrap" style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px">
+          <div class="label-sm" style="margin-bottom:10px">Map(গুলো) select করুন</div>
+          <div id="map-checkboxes" style="display:flex;flex-direction:column;gap:8px">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Bermuda" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Bermuda</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Kalahari" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Kalahari</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Purgatory" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Purgatory</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Alpine" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Alpine</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Solara" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Solara</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Nextera" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Nextera</span>
+            </label>
+          </div>
+          <div id="map-count-hint" style="font-size:.72rem;color:var(--orange);margin-top:8px;font-weight:600">⚠️ ঠিক 1 টি map select করুন</div>
+        </div>
         <div style="display:flex;gap:10px">
           <div style="flex:1"><div class="label-sm">Date</div><input class="input-field" id="t-date" placeholder="25 May"></div>
           <div style="flex:1"><div class="label-sm">Time</div><input class="input-field" id="t-time" placeholder="8:00 PM"></div>
@@ -812,13 +846,17 @@ function buildTCard(t) {
   const isFull = left <= 0;
   const modeLabel = t.mode==='solo'?'Solo':t.mode==='duo'?'Duo':'Squad';
   const slotColor = left<=5?'var(--red)':'var(--muted)';
+  // Multi-map display
+  const maps = t.maps || [t.map||'Bermuda'];
+  const mapBadges = maps.map(m=>`<span style="display:inline-block;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:5px;padding:2px 7px;font-size:.65rem;font-weight:700;color:var(--orange);margin:2px 2px 0 0">${m}</span>`).join('');
   return `<div class="t-card">
     <div class="t-card-head">
       <div><span class="${isFull?'badge-red':'badge-green'}">${isFull?'FULL':'OPEN'}</span> <span class="t-card-name">${t.name}</span></div>
       <div class="t-card-date">📅 ${t.date||''}</div>
     </div>
     <div class="t-card-body">
-      <div class="t-card-map">🗺️ ${modeLabel} · ${t.map||''} · ⏰ ${t.time||''}</div>
+      <div class="t-card-map">🗺️ ${modeLabel} · ⏰ ${t.time||''}</div>
+      <div style="margin-bottom:10px">${mapBadges}</div>
       <div class="t-meta-row">
         <div class="t-meta-item">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
@@ -969,12 +1007,14 @@ window.submitWithdraw = async function() {
 async function loadTransactions() {
   if (!currentUser) return;
   try {
-    const snap = await getDocs(query(collection(db,'deposits'),where('playerUid','==',currentUser.uid),orderBy('createdAt','desc')));
+    const snap = await getDocs(query(collection(db,'deposits'),where('playerUid','==',currentUser.uid)));
     const list = document.getElementById('txn-list');
     if (snap.empty) { list.innerHTML=`<div style="padding:16px;text-align:center;color:var(--muted);font-size:.85rem">No transactions yet.</div>`; return; }
+    const docs=[]; snap.forEach(d=>docs.push({id:d.id,...d.data()}));
+    docs.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
     list.innerHTML='';
-    snap.forEach(d=>{
-      const t=d.data(),sc=t.status==='approved'?'s-approved':t.status==='rejected'?'s-rejected':'s-pending';
+    docs.forEach(t=>{
+      const sc=t.status==='approved'?'s-approved':t.status==='rejected'?'s-rejected':'s-pending';
       list.innerHTML+=`<div class="txn-card"><div class="txn-top"><div><div class="txn-type">Deposit · ${t.method}</div><span class="txn-status ${sc}">${t.status}</span></div><div class="txn-amt plus">+ ৳${t.amount}</div></div><div class="txn-meta">TrxID: ${t.trxid} · ${t.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||'Recently'}</div></div>`;
     });
   } catch(e) {}
@@ -984,12 +1024,14 @@ async function loadTransactions() {
 async function loadMyRegistrations() {
   if (!currentUser) return;
   try {
-    const snap = await getDocs(query(collection(db,'registrations'),where('playerUid','==',currentUser.uid),orderBy('createdAt','desc')));
+    const snap = await getDocs(query(collection(db,'registrations'),where('playerUid','==',currentUser.uid)));
     const list = document.getElementById('my-regs-list');
     if (snap.empty) { list.innerHTML=`<div class="empty-state"><div class="empty-icon">📂</div><div class="empty-text">No matches yet.<br>Join a tournament!</div></div>`; return; }
+    const docs=[]; snap.forEach(d=>docs.push({id:d.id,...d.data()}));
+    docs.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
     list.innerHTML='';
-    snap.forEach(d=>{
-      const r=d.data(),name=r.teamName||r.igl||r.p1||'Unknown';
+    docs.forEach(r=>{
+      const name=r.teamName||r.igl||r.p1||'Unknown';
       list.innerHTML+=`<div class="t-card"><div class="t-card-head"><div><span class="badge-green">Registered</span> <span class="t-card-name">${name}</span></div><div class="t-card-date">${r.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||''}</div></div><div class="t-card-body"><div class="t-card-map">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()||''}</div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">UID: ${r.uid} · 📞 ${r.phone}</div></div></div>`;
     });
   } catch(e) {}
@@ -1037,17 +1079,26 @@ async function loadAdminTournaments() {
     const list=document.getElementById('admin-t-list');
     if(snap.empty){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No tournaments yet.</div>';return;}
     list.innerHTML='';
-    snap.forEach(d=>{const t=d.data();list.innerHTML+=`<div class="t-item"><div class="t-item-head"><div class="t-item-name">${t.name}</div><button class="delete-btn" onclick="deleteTournament('${d.id}')">Delete</button></div><div class="t-item-meta">${t.mode} · ${t.map} · ${t.date} · ৳${t.prize} prize · ${t.registered||0}/${t.slots} · Fee:৳${t.fee||0}</div></div>`;});
+    snap.forEach(d=>{const t=d.data();list.innerHTML+=`<div class="t-item"><div class="t-item-head"><div class="t-item-name">${t.name}</div><div style="display:flex;gap:6px"><button class="detail-btn" onclick="viewTournamentRegs('${d.id}','${t.name}')">👥 Players</button><button class="delete-btn" onclick="deleteTournament('${d.id}')">Delete</button></div></div><div class="t-item-meta">${t.mode} · ${t.map} · ${t.date} · ৳${t.prize} prize · <span style="color:var(--orange);font-weight:700">${t.registered||0}/${t.slots} filled</span> · Fee:৳${t.fee||0}</div></div>`;});
   } catch(e) {}
 }
 
 window.addTournament = async function() {
-  const name=document.getElementById('t-name').value.trim(),mode=document.getElementById('t-mode').value,map=document.getElementById('t-map').value,date=document.getElementById('t-date').value.trim(),time=document.getElementById('t-time').value.trim(),slots=parseInt(document.getElementById('t-slots').value),prize=parseInt(document.getElementById('t-prize').value)||0,fee=parseInt(document.getElementById('t-fee').value)||0;
+  const name=document.getElementById('t-name').value.trim(),mode=document.getElementById('t-mode').value,date=document.getElementById('t-date').value.trim(),time=document.getElementById('t-time').value.trim(),slots=parseInt(document.getElementById('t-slots').value),prize=parseInt(document.getElementById('t-prize').value)||0,fee=parseInt(document.getElementById('t-fee').value)||0;
+  // Multi-map selection
+  const mapCount = parseInt(document.getElementById('t-map-count').value)||1;
+  const checkedMaps = [...document.querySelectorAll('input[name="map-cb"]:checked')].map(cb=>cb.value);
   if(!name||!date||!slots){showToast('Name, Date ও Slots দিন!');return;}
+  if(checkedMaps.length===0){showToast('কমপক্ষে ১টি map select করুন!');return;}
+  if(checkedMaps.length!==mapCount){showToast(`ঠিক ${mapCount} টি map select করুন! (এখন ${checkedMaps.length} টি)`);return;}
+  const mapDisplay = checkedMaps.join(' · ');
   try {
-    await addDoc(collection(db,'tournaments'),{name,mode,map,date,time,slots,prize,fee,registered:0,createdAt:serverTimestamp()});
+    await addDoc(collection(db,'tournaments'),{name,mode,map:mapDisplay,maps:checkedMaps,mapCount,date,time,slots,prize,fee,registered:0,createdAt:serverTimestamp()});
     showToast('✅ Tournament added!');
     ['t-name','t-date','t-time','t-slots','t-prize','t-fee'].forEach(id=>document.getElementById(id).value='');
+    document.querySelectorAll('input[name="map-cb"]').forEach(cb=>cb.checked=false);
+    document.getElementById('t-map-count').value='1';
+    updateMapCheckboxes();
     loadAdminTournaments(); loadTournaments();
   } catch(e) { showToast('Error: '+e.message); }
 }
@@ -1060,15 +1111,18 @@ window.deleteTournament = async function(id) {
 
 async function loadAdminRegistrations() {
   try {
-    const snap=await getDocs(query(collection(db,'registrations'),orderBy('createdAt','desc')));
+    const snap=await getDocs(collection(db,'registrations'));
     const list=document.getElementById('admin-reg-list');
     if(snap.empty){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No registrations yet.</div>';return;}
     list.innerHTML='';
-    snap.forEach(d=>{
-      const r=d.data(),name=r.teamName||r.igl||r.p1||'Unknown',icon=r.mode==='solo'?'👤':r.mode==='duo'?'👥':'⚔️';
-      list.innerHTML+=`<div class="reg-item"><div class="reg-head"><div><div class="reg-name">${icon} ${name}</div><span class="txn-status s-approved" style="font-size:.6rem">✅ Registered</span></div><button class="detail-btn" onclick="showRegDetails('${d.id}')">Details</button></div><div class="reg-meta">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()}</div><div class="reg-meta">👤 ${r.playerEmail} · 📞 ${r.phone}</div></div>`;
+    // Sort client-side by createdAt desc
+    const docs=[]; snap.forEach(d=>docs.push({id:d.id,...d.data()}));
+    docs.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    docs.forEach(r=>{
+      const name=r.teamName||r.igl||r.p1||'Unknown',icon=r.mode==='solo'?'👤':r.mode==='duo'?'👥':'⚔️';
+      list.innerHTML+=`<div class="reg-item"><div class="reg-head"><div><div class="reg-name">${icon} ${name}</div><span class="txn-status s-approved" style="font-size:.6rem">✅ Registered</span></div><button class="detail-btn" onclick="showRegDetails('${r.id}')">Details</button></div><div class="reg-meta">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()}</div><div class="reg-meta">👤 ${r.playerEmail} · 📞 ${r.phone}</div></div>`;
     });
-  } catch(e) {}
+  } catch(e) { console.log(e); }
 }
 
 window.showRegDetails = async function(regId) {
@@ -1108,7 +1162,7 @@ window.deleteReg = async function(id) {
 
 async function loadAdminDeposits() {
   try {
-    const snap=await getDocs(query(collection(db,'deposits'),where('status','==','pending'),orderBy('createdAt','desc')));
+    const snap=await getDocs(query(collection(db,'deposits'),where('status','==','pending')));
     const list=document.getElementById('admin-dep-list');
     if(snap.empty){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No pending deposits.</div>';return;}
     list.innerHTML='';
@@ -1186,10 +1240,37 @@ window._loadTransactions = loadTransactions;
 window._loadMyRegs = loadMyRegistrations;
 window._loadAdminData = loadAdminData;
 
+// ── ADMIN: VIEW TOURNAMENT REGISTRATIONS ──
+window.viewTournamentRegs = async function(tId, tName) {
+  try {
+    const snap = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',tId)));
+    const modal = document.createElement('div');
+    modal.className = 'detail-modal';
+    let rows = '';
+    if(snap.empty) {
+      rows = '<div style="text-align:center;color:var(--muted);padding:20px">কোনো registration নেই</div>';
+    } else {
+      let i=0;
+      snap.forEach(d=>{
+        i++;
+        const r=d.data();
+        let name='', members='';
+        if(r.mode==='solo'){name=r.p1||r.displayName||'Player';members='Solo player';}
+        else if(r.mode==='duo'){name=r.igl||r.displayName||'IGL';members=`IGL: ${r.igl||'-'} | 2nd: ${r.p2||'-'}`;}
+        else{name=r.teamName||r.igl||'Team';members=`IGL:${r.igl||'-'} | P2:${r.p2||'-'} | P3:${r.p3||'-'} | P4:${r.p4||'-'}`;}
+        rows+=`<div class="team-row"><div class="team-num">${i}</div><div class="team-info"><div class="team-name">${name}</div><div class="team-members">${members}</div><div class="team-members">UID: ${r.uid} · 📞 ${r.phone}</div></div><button onclick="deleteReg('${d.id}');this.closest('.detail-modal').remove()" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);border-radius:6px;padding:5px 8px;font-size:.65rem;font-weight:700;cursor:pointer;flex-shrink:0">Remove</button></div>`;
+      });
+    }
+    modal.innerHTML=`<div class="detail-box"><div class="detail-title">👥 ${tName} — Players (${snap.size})</div>${rows}<button onclick="this.closest('.detail-modal').remove()" style="width:100%;margin-top:16px;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">Close</button></div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
+  } catch(e){ showToast('Error: '+e.message); }
+}
+
 // ── VIEW TOURNAMENT TEAMS (user side) ──
 window.viewTournamentTeams = async function(tId, tName) {
   try {
-    const snap = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',tId), orderBy('createdAt','asc')));
+    const snap = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',tId)));
     const modal = document.createElement('div');
     modal.className = 'teams-modal';
     let rows = '';
@@ -1289,6 +1370,39 @@ async function loadUserResults() {
 </script>
 
 <script>
+function updateMapCheckboxes() {
+  const count = parseInt(document.getElementById('t-map-count').value)||1;
+  const hint = document.getElementById('map-count-hint');
+  const cbs = document.querySelectorAll('input[name="map-cb"]');
+  if(count === 6) {
+    cbs.forEach(cb => cb.checked = true);
+    hint.textContent = '\u2705 \u09b8\u09ac 6\u099f\u09bf map selected!';
+    hint.style.color = 'var(--green)';
+  } else {
+    cbs.forEach(cb => cb.checked = false);
+    hint.textContent = '\u26a0\ufe0f \u09a8\u09bf\u099a \u09a5\u09c7\u0995\u09c7 \u09af\u09c7\u0995\u09cb\u09a8\u09cb ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09c1\u09a8';
+    hint.style.color = 'var(--orange)';
+  }
+}
+
+function onMapCheck(cb) {
+  const count = parseInt(document.getElementById('t-map-count').value)||1;
+  const hint = document.getElementById('map-count-hint');
+  const checked = document.querySelectorAll('input[name="map-cb"]:checked');
+  if(checked.length > count) {
+    cb.checked = false;
+    showToast('\u09b8\u09b0\u09cd\u09ac\u09cb\u099a\u09cd\u099a ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09be \u09af\u09be\u09ac\u09c7!');
+    return;
+  }
+  const now = document.querySelectorAll('input[name="map-cb"]:checked').length;
+  if(now === count) {
+    hint.textContent = '\u2705 ' + count + ' \u099f\u09bf map selected!';
+    hint.style.color = 'var(--green)';
+  } else {
+    hint.textContent = '\u26a0\ufe0f \u0986\u09b0\u09cb ' + (count-now) + ' \u099f\u09bf select \u0995\u09b0\u09c1\u09a8 (' + now + '/' + count + ')';
+    hint.style.color = 'var(--orange)';
+  }
+}
 function switchScreen(name) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -1305,4 +1419,4 @@ function adminTab(el,section){document.querySelectorAll('.admin-tab').forEach(t=
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2800);}
 </script>
 </body>
-</html>
+            </html>
