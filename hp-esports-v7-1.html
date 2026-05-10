@@ -571,12 +571,13 @@ import { getFirestore, collection, doc, addDoc, setDoc, getDoc, getDocs, updateD
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDK2pAl2aJdglZ83i-JulG_jVnfMtAiavo",
+  apiKey: "AIzaSyDK2pAl2aJdglZ83i-JulG_jVnfMf4rqBA",
   authDomain: "hp-esports-d6d7f.firebaseapp.com",
   projectId: "hp-esports-d6d7f",
   storageBucket: "hp-esports-d6d7f.firebasestorage.app",
   messagingSenderId: "747036339769",
-  appId: "1:747036339769:web:60509582410c3d4cb60b71"
+  appId: "1:747036339769:web:6050958241a01c3696a7e8",
+  measurementId: "G-GG443Q7M51"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -938,8 +939,7 @@ async function loadMyRegistrations() {
     list.innerHTML='';
     snap.forEach(d=>{
       const r=d.data(),name=r.teamName||r.igl||r.p1||'Unknown';
-      list.innerHTML+=`<div class="t-card"><div class="t-card-head"><div><span class="badge-green">Registered</span> <span class="t-card-name">${name}</span></div><div class="t-card-date">${r.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||''}</div></div><div cl
-      ass="t-card-body"><div class="t-card-map">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()||''}</div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">UID: ${r.uid} · 📞 ${r.phone}</div></div></div>`;
+      list.innerHTML+=`<div class="t-card"><div class="t-card-head"><div><span class="badge-green">Registered</span> <span class="t-card-name">${name}</span></div><div class="t-card-date">${r.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||''}</div></div><div class="t-card-body"><div class="t-card-map">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()||''}</div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">UID: ${r.uid} · 📞 ${r.phone}</div></div></div>`;
     });
   } catch(e) {}
 }
