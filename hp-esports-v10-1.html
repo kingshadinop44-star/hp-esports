@@ -966,6 +966,15 @@ function showPage(page) {
 }
 
 // ── AUTH STATE LISTENER ──
+// Safety: hide splash after 5s no matter what
+setTimeout(() => {
+  const s = document.getElementById('splash');
+  if(s && s.style.display !== 'none') {
+    s.style.display = 'none';
+    showPage('login');
+  }
+}, 5000);
+
 onAuthStateChanged(auth, async (user) => {
   document.getElementById('splash').style.display = 'none';
   if (user) {
@@ -1378,12 +1387,4 @@ window.updateProfile = async function() {
 }
 
 // ── WHATSAPP ──
-window.openWhatsApp = function() { window.open(`https://wa.me/${paymentSettings.wa||'880'}`,'_blank'); }
-
-// ── ADMIN ──
-
-async function loadAdminData() {
-  loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults();
-}
-
-async function loadAdminTournament
+window.openWhatsApp = function() { window.open(`https://wa.me/${paymentSettings.wa||'880'}`,'_blank')
