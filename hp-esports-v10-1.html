@@ -408,23 +408,6 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
 .profile-section-card{margin:0 16px 12px;background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px}
 .psc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .psc-title{font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.psc-action{font-size:.75rem;color:var(--orange);font-weight:700;cursor:pointer}
-.badge-chip{display:inline-flex;align-items:center;gap:5px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;padding:6px 10px;font-size:.75rem;font-weight:700;color:var(--orange);margin:3px}
-/* MODERATOR PANEL */
-.mod-screen{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--bg);z-index:500;overflow-y:auto}
-.mod-screen.active{display:block}
-.mod-header{background:#0a0a16;border-bottom:1px solid rgba(59,130,246,.3);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
-.mod-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#3b82f6}
-.mod-close-btn{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:8px 14px;font-size:.78rem;font-weight:700;color:#3b82f6;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em}
-.mod-nav{display:flex;overflow-x:auto;gap:6px;padding:10px 16px;background:#0a0a16;border-bottom:1px solid var(--border);position:sticky;top:53px;z-index:9}
-.mod-nav::-webkit-scrollbar{display:none}
-.mod-tab{flex-shrink:0;padding:8px 16px;border-radius:8px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;background:var(--card);color:var(--muted);border:1px solid var(--border);font-family:'Barlow Condensed',sans-serif}
-.mod-tab.active{background:rgba(59,130,246,.15);color:#3b82f6;border-color:rgba(59,130,246,.4)}
-.mod-section{display:none;padding:16px}
-.mod-section.active{display:block}
-/* FULLSCREEN MODAL */
-.fs-modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:600;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(10px)}
-.fs-box{background:#181818;border-radius:24px 24px 0 0;border:1px solid var(--border);border-bottom:none;width:100%;max-width:430px;padding:20px 20px 34px;max-height:90vh;overflow-y:auto}
 
 
 .teams-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:400;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(8px)}
@@ -973,6 +956,15 @@ let joinTournamentData = null;
 let isAdmin = false;
 let userRole = 'player'; // owner | admin | moderator | player
 
+
+function showPage(page) {
+  document.getElementById('page-login').style.display = 'none';
+  document.getElementById('page-signup').style.display = 'none';
+  document.getElementById('app-wrap').classList.remove('active');
+  if(page==='login') document.getElementById('page-login').style.display = 'flex';
+  else if(page==='signup') document.getElementById('page-signup').style.display = 'flex';
+}
+
 // ── AUTH STATE LISTENER ──
 onAuthStateChanged(auth, async (user) => {
   document.getElementById('splash').style.display = 'none';
@@ -1357,4 +1349,41 @@ async function loadMyRegistrations() {
     const list = document.getElementById('my-regs-list');
     if (snap.empty) { list.innerHTML=`<div class="empty-state"><div class="empty-icon">📂</div><div class="empty-text">No matches yet.<br>Join a tournament!</div></div>`; return; }
     const docs=[]; snap.forEach(d=>docs.push({id:d.id,...d.data()}));
-    docs.sort((a,b
+    docs.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    list.innerHTML='';
+    docs.forEach(r=>{
+      const name=r.teamName||r.igl||r.p1||'Unknown';
+      list.innerHTML+=`<div class="t-card"><div class="t-card-head"><div><span class="badge-green">Registered</span> <span class="t-card-name">${name}</span></div><div class="t-card-date">${r.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||''}</div></div><div class="t-card-body"><div class="t-card-map">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()||''}</div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">UID: ${r.uid} · 📞 ${r.phone}</div></div></div>`;
+    });
+  } catch(e) {}
+}
+
+// ── COPY ──
+window.copyNum = function(type) {
+  const num = paymentSettings[type]||'';
+  if (!num||num==='Not set') { showToast('Number set করা নেই'); return; }
+  navigator.clipboard.writeText(num).catch(()=>{});
+  showToast('✅ Copied: '+num);
+}
+
+// ── UPDATE PROFILE ──
+window.updateProfile = async function() {
+  if (!currentUser) return;
+  const uid=document.getElementById('profile-uid').value.trim(),ign=document.getElementById('profile-ign').value.trim();
+  try {
+    await setDoc(doc(db,'users',currentUser.uid),{uid,ign},{merge:true});
+    currentUserData.uid=uid; currentUserData.ign=ign;
+    showToast('✅ Profile updated!');
+  } catch(e) { showToast('Error!'); }
+}
+
+// ── WHATSAPP ──
+window.openWhatsApp = function() { window.open(`https://wa.me/${paymentSettings.wa||'880'}`,'_blank'); }
+
+// ── ADMIN ──
+
+async function loadAdminData() {
+  loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults();
+}
+
+async function loadAdminTournament
