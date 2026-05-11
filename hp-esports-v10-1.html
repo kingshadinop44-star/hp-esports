@@ -232,209 +232,6 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
 .team-name{font-weight:700;font-size:.9rem;font-family:'Barlow Condensed',sans-serif}
 .team-members{font-size:.72rem;color:var(--muted);margin-top:2px}
 
-
-/* ── ROLE BADGES ── */
-.badge-owner{display:inline-block;background:linear-gradient(135deg,rgba(249,115,22,.25),rgba(234,108,10,.15));border:1px solid var(--orange);border-radius:6px;padding:3px 9px;font-size:.65rem;font-weight:800;color:var(--orange);letter-spacing:.1em;text-transform:uppercase}
-.badge-admin{display:inline-block;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35);border-radius:6px;padding:3px 9px;font-size:.65rem;font-weight:800;color:#ef4444;letter-spacing:.1em;text-transform:uppercase}
-.badge-mod{display:inline-block;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);border-radius:6px;padding:3px 9px;font-size:.65rem;font-weight:800;color:#3b82f6;letter-spacing:.1em;text-transform:uppercase}
-
-/* ── TEAMS SCREEN ── */
-.teams-header{margin:16px 16px 14px;display:flex;flex-direction:column;gap:4px}
-.teams-title{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;letter-spacing:.04em}
-.teams-sub{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.teams-actions{display:flex;gap:10px;margin:0 16px 14px}
-.team-action-btn{flex:1;padding:14px 10px;border-radius:14px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1px solid var(--border);background:var(--card);transition:all .2s}
-.team-action-btn:active{transform:scale(.97)}
-.team-action-btn.primary{background:var(--orange-dim);border-color:var(--orange-border)}
-.team-action-icon{font-size:1.4rem;flex-shrink:0}
-.team-action-label{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-.team-action-sub{font-size:.68rem;color:var(--muted);margin-top:1px}
-.teams-tab-row{display:flex;margin:0 16px 14px;background:var(--card);border-radius:12px;padding:4px;gap:3px}
-.teams-tab{flex:1;padding:10px 4px;text-align:center;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);transition:all .2s}
-.teams-tab.active{background:var(--orange);color:#fff}
-.team-card{margin:0 16px 12px;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border)}
-.team-card-head{padding:14px;background:linear-gradient(135deg,rgba(249,115,22,.08),transparent);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-.team-card-avatar{width:48px;height:48px;border-radius:12px;background:var(--orange-dim);border:1px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden}
-.team-card-avatar img{width:100%;height:100%;object-fit:cover}
-.team-card-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:.04em}
-.team-card-tag{font-size:.72rem;color:var(--orange);font-weight:700;margin-top:2px}
-.team-card-members{font-size:.72rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.04em;margin-left:auto;text-align:right;flex-shrink:0}
-.team-card-body{padding:12px 14px}
-.team-stats-row{display:flex;gap:0;margin-bottom:10px}
-.team-stat{flex:1;text-align:center;padding:8px 4px;border-right:1px solid var(--border)}
-.team-stat:last-child{border-right:none}
-.team-stat-val{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900}
-.team-stat-val.wins{color:#22c55e}
-.team-stat-val.losses{color:#ef4444}
-.team-stat-val.wr{color:#3b82f6}
-.team-stat-label{font-size:.6rem;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
-.team-member-avatars{display:flex;gap:6px;align-items:center}
-.team-member-av{width:28px;height:28px;border-radius:8px;background:var(--orange-dim);border:1px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--orange)}
-.team-view-btn{float:right;background:transparent;border:1px solid var(--border);border-radius:8px;padding:5px 12px;font-size:.72rem;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em}
-
-/* ── LEADERBOARD SCREEN ── */
-.lb-hero{margin:16px;padding:20px;background:linear-gradient(135deg,#0a0a1a,#0e0e0e,#1a0800);border-radius:20px;border:1px solid var(--orange-border);text-align:center;position:relative;overflow:hidden}
-.lb-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(249,115,22,.08),transparent)}
-.lb-eyebrow{font-size:.65rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px;position:relative}
-.lb-title{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);position:relative}
-.lb-tabs{display:flex;margin:0 16px 16px;gap:8px}
-.lb-tab{flex:1;padding:10px 6px;text-align:center;border-radius:10px;cursor:pointer;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px}
-.lb-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
-.lb-podium{margin:0 16px 16px;display:flex;align-items:flex-end;justify-content:center;gap:8px;min-height:160px}
-.podium-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;max-width:120px}
-.podium-avatar{border-radius:14px;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'Barlow Condensed',sans-serif;overflow:hidden;flex-shrink:0}
-.podium-avatar img{width:100%;height:100%;object-fit:cover}
-.podium-item.first .podium-avatar{width:72px;height:72px;font-size:1.4rem;border-color:var(--orange);border-width:2px}
-.podium-item.second .podium-avatar,.podium-item.third .podium-avatar{width:58px;height:58px;font-size:1.1rem}
-.podium-name{font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:800;text-align:center;letter-spacing:.02em;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.podium-score{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;color:var(--orange)}
-.podium-rank{font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase}
-.podium-item.first .podium-rank{background:rgba(249,115,22,.2);color:var(--orange);border:1px solid var(--orange-border)}
-.podium-item.second .podium-rank{background:rgba(148,163,184,.12);color:#94a3b8;border:1px solid rgba(148,163,184,.2)}
-.podium-item.third .podium-rank{background:rgba(180,113,66,.12);color:#b47142;border:1px solid rgba(180,113,66,.2)}
-.podium-base{width:100%;border-radius:10px 10px 0 0;margin-top:auto}
-.podium-item.first .podium-base{height:50px;background:linear-gradient(180deg,rgba(249,115,22,.2),rgba(249,115,22,.05));border:1px solid var(--orange-border);border-bottom:none}
-.podium-item.second .podium-base{height:35px;background:linear-gradient(180deg,rgba(148,163,184,.1),rgba(148,163,184,.02));border:1px solid rgba(148,163,184,.2);border-bottom:none}
-.podium-item.third .podium-base{height:25px;background:linear-gradient(180deg,rgba(180,113,66,.1),rgba(180,113,66,.02));border:1px solid rgba(180,113,66,.2);border-bottom:none}
-.lb-row{margin:0 16px 8px;padding:12px 14px;background:var(--card);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;gap:10px}
-.lb-rank-num{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;color:var(--muted);width:24px;flex-shrink:0;text-align:center}
-.lb-av{width:36px;height:36px;border-radius:10px;background:var(--orange-dim);border:1px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;color:var(--orange);flex-shrink:0;overflow:hidden}
-.lb-av img{width:100%;height:100%;object-fit:cover}
-.lb-info{flex:1;min-width:0}
-.lb-name{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lb-meta{font-size:.68rem;color:var(--muted);margin-top:2px}
-.lb-score{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;color:var(--orange);flex-shrink:0}
-
-/* ── PROFILE UPGRADES ── */
-.profile-stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 16px 14px}
-.ps-item{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:10px 4px;text-align:center}
-.ps-val{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900}
-.ps-val.green{color:#22c55e}
-.ps-val.red{color:#ef4444}
-.ps-val.blue{color:#3b82f6}
-.ps-val.orange{color:var(--orange)}
-.ps-label{font-size:.55rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
-.profile-section-card{margin:0 16px 12px;background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px}
-.profile-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.profile-section-title{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.profile-section-action{font-size:.75rem;color:var(--orange);font-weight:700;cursor:pointer}
-.badge-chip{display:inline-flex;align-items:center;gap:5px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;padding:6px 10px;font-size:.75rem;font-weight:700;color:var(--orange);margin:3px}
-
-/* ── MODERATOR PANEL ── */
-.mod-screen{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--bg);z-index:500;overflow-y:auto}
-.mod-screen.active{display:block}
-.mod-header{background:#111;border-bottom:1px solid rgba(59,130,246,.3);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
-.mod-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#3b82f6}
-.mod-nav{display:flex;overflow-x:auto;gap:6px;padding:10px 16px;background:#111;border-bottom:1px solid var(--border);position:sticky;top:53px;z-index:9}
-.mod-nav::-webkit-scrollbar{display:none}
-.mod-tab{flex-shrink:0;padding:8px 16px;border-radius:8px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;background:var(--card);color:var(--muted);border:1px solid var(--border);font-family:'Barlow Condensed',sans-serif}
-.mod-tab.active{background:rgba(59,130,246,.15);color:#3b82f6;border-color:rgba(59,130,246,.4)}
-.mod-section{display:none;padding:16px}
-.mod-section.active{display:block}
-
-/* ── TEAM CREATE/JOIN MODAL ── */
-.fullscreen-modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:300;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(10px)}
-.fullscreen-box{background:#181818;border-radius:24px 24px 0 0;border:1px solid var(--border);border-bottom:none;width:100%;max-width:430px;padding:20px 20px 34px;max-height:90vh;overflow-y:auto}
-
-
-/* ── ROLE BADGES ── */
-.badge-owner{display:inline-block;background:linear-gradient(135deg,rgba(249,115,22,.25),rgba(234,108,10,.15));border:1px solid var(--orange);border-radius:6px;padding:3px 9px;font-size:.65rem;font-weight:800;color:var(--orange);letter-spacing:.1em;text-transform:uppercase}
-.badge-admin{display:inline-block;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35);border-radius:6px;padding:3px 9px;font-size:.65rem;font-weight:800;color:#ef4444;letter-spacing:.1em;text-transform:uppercase}
-.badge-mod{display:inline-block;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);border-radius:6px;padding:3px 9px;font-size:.65rem;font-weight:800;color:#3b82f6;letter-spacing:.1em;text-transform:uppercase}
-/* TEAMS */
-.teams-actions{display:flex;gap:10px;margin:0 16px 14px}
-.team-action-btn{flex:1;padding:14px 10px;border-radius:14px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1px solid var(--border);background:var(--card);transition:all .2s}
-.team-action-btn.primary{background:var(--orange-dim);border-color:var(--orange-border)}
-.team-action-icon{font-size:1.4rem}
-.team-action-label{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-.team-action-sub{font-size:.68rem;color:var(--muted);margin-top:1px}
-.teams-tab-row{display:flex;margin:0 16px 14px;background:var(--card);border-radius:12px;padding:4px;gap:3px}
-.teams-tab{flex:1;padding:10px 4px;text-align:center;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);transition:all .2s}
-.teams-tab.active{background:var(--orange);color:#fff}
-.team-card{margin:0 16px 12px;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border)}
-.team-card-head{padding:14px;background:linear-gradient(135deg,rgba(249,115,22,.08),transparent);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-.team-card-logo{width:48px;height:48px;border-radius:12px;background:var(--orange-dim);border:1px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
-.team-card-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:.04em}
-.team-card-tag{font-size:.72rem;color:var(--orange);font-weight:700;margin-top:2px}
-.team-card-mc{font-size:.72rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.04em;margin-left:auto;text-align:right;flex-shrink:0}
-.team-card-body{padding:12px 14px}
-.team-stats-row{display:flex;margin-bottom:10px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.team-stat{flex:1;text-align:center;padding:8px 4px;border-right:1px solid var(--border)}
-.team-stat:last-child{border-right:none}
-.team-stat-val{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900}
-.team-stat-val.w{color:#22c55e}.team-stat-val.l{color:#ef4444}.team-stat-val.b{color:#3b82f6}.team-stat-val.o{color:var(--orange)}
-.team-stat-label{font-size:.58rem;color:var(--muted);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-top:1px}
-.team-footer{display:flex;align-items:center;justify-content:space-between}
-.team-avatars{display:flex;gap:4px}
-.team-av{width:26px;height:26px;border-radius:7px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:var(--muted)}
-.team-view-btn{background:transparent;border:1px solid var(--border);border-radius:8px;padding:5px 12px;font-size:.7rem;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Barlow Condensed',sans-serif}
-/* LEADERBOARD */
-.lb-hero{margin:16px;padding:20px;background:linear-gradient(135deg,#0a0a1a,#0e0e0e,#1a0800);border-radius:20px;border:1px solid var(--orange-border);text-align:center;position:relative;overflow:hidden}
-.lb-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(249,115,22,.08),transparent)}
-.lb-eyebrow{font-size:.65rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px;position:relative}
-.lb-title{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);position:relative}
-.lb-tabs{display:flex;margin:0 16px 16px;gap:8px}
-.lb-tab{flex:1;padding:10px 6px;text-align:center;border-radius:10px;cursor:pointer;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s}
-.lb-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
-.lb-podium{margin:0 16px 16px;display:flex;align-items:flex-end;justify-content:center;gap:8px;min-height:170px}
-.podium-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;max-width:110px}
-.podium-av{border-radius:14px;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'Barlow Condensed',sans-serif;overflow:hidden}
-.podium-item.p1 .podium-av{width:68px;height:68px;font-size:1.3rem;border-color:var(--orange)}
-.podium-item.p2 .podium-av,.podium-item.p3 .podium-av{width:54px;height:54px;font-size:1rem}
-.podium-name{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:800;text-align:center;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.podium-score{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;color:var(--orange)}
-.podium-badge{font-size:.68rem;font-weight:800;padding:3px 9px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase}
-.p1 .podium-badge{background:rgba(249,115,22,.2);color:var(--orange);border:1px solid var(--orange-border)}
-.p2 .podium-badge{background:rgba(148,163,184,.12);color:#94a3b8;border:1px solid rgba(148,163,184,.2)}
-.p3 .podium-badge{background:rgba(180,113,66,.12);color:#b47142;border:1px solid rgba(180,113,66,.2)}
-.podium-base{width:100%;border-radius:10px 10px 0 0;margin-top:auto}
-.p1 .podium-base{height:46px;background:rgba(249,115,22,.1);border:1px solid var(--orange-border);border-bottom:none}
-.p2 .podium-base{height:30px;background:rgba(148,163,184,.07);border:1px solid rgba(148,163,184,.15);border-bottom:none}
-.p3 .podium-base{height:20px;background:rgba(180,113,66,.07);border:1px solid rgba(180,113,66,.15);border-bottom:none}
-.lb-row{margin:0 16px 8px;padding:12px 14px;background:var(--card);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;gap:10px}
-.lb-rank{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;color:var(--muted);width:22px;text-align:center;flex-shrink:0}
-.lb-av{width:34px;height:34px;border-radius:10px;background:var(--orange-dim);border:1px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.82rem;color:var(--orange);flex-shrink:0;overflow:hidden}
-.lb-av img{width:100%;height:100%;object-fit:cover}
-.lb-info{flex:1;min-width:0}
-.lb-name{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lb-meta{font-size:.66rem;color:var(--muted);margin-top:2px}
-.lb-score{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;color:var(--orange);flex-shrink:0}
-/* PROFILE UPGRADES */
-.profile-stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:0 16px 14px}
-.ps-item{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:10px 4px;text-align:center}
-.ps-val{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900}
-.ps-val.g{color:#22c55e}.ps-val.r{color:#ef4444}.ps-val.b{color:#3b82f6}.ps-val.o{color:var(--orange)}
-.ps-label{font-size:.52rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
-.profile-section-card{margin:0 16px 12px;background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px}
-.psc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.psc-title{font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.psc-action{font-size:.75rem;color:var(--orange);font-weight:700;cursor:pointer}
-.badge-chip{display:inline-flex;align-items:center;gap:5px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;padding:6px 10px;font-size:.75rem;font-weight:700;color:var(--orange);margin:3px}
-/* MODERATOR PANEL */
-.mod-screen{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--bg);z-index:500;overflow-y:auto}
-.mod-screen.active{display:block}
-.mod-header{background:#0a0a16;border-bottom:1px solid rgba(59,130,246,.3);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
-.mod-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#3b82f6}
-.mod-close-btn{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:8px 14px;font-size:.78rem;font-weight:700;color:#3b82f6;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em}
-.mod-nav{display:flex;overflow-x:auto;gap:6px;padding:10px 16px;background:#0a0a16;border-bottom:1px solid var(--border);position:sticky;top:53px;z-index:9}
-.mod-nav::-webkit-scrollbar{display:none}
-.mod-tab{flex-shrink:0;padding:8px 16px;border-radius:8px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;background:var(--card);color:var(--muted);border:1px solid var(--border);font-family:'Barlow Condensed',sans-serif}
-.mod-tab.active{background:rgba(59,130,246,.15);color:#3b82f6;border-color:rgba(59,130,246,.4)}
-.mod-section{display:none;padding:16px}
-.mod-section.active{display:block}
-/* FULLSCREEN MODAL */
-.fs-modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:600;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(10px)}
-.fs-box{background:#181818;border-radius:24px 24px 0 0;border:1px solid var(--border);border-bottom:none;width:100%;max-width:430px;padding:20px 20px 34px;max-height:90vh;overflow-y:auto}
-
-
-.teams-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:400;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(8px)}
-.teams-box{background:#181818;border-radius:20px 20px 0 0;border:1px solid var(--border);width:100%;max-width:430px;padding:20px 20px 30px;max-height:80vh;overflow-y:auto}
-.team-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
-.team-num{font-size:1rem;flex-shrink:0}
-.team-info{}
-.team-name{font-weight:700;font-size:.9rem}
-.team-members{font-size:.72rem;color:var(--muted);margin-top:2px}
-
 /* LOADING SCREEN */
 .splash{position:fixed;inset:0;background:var(--bg);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 .splash-logo{font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;color:var(--orange);letter-spacing:.04em}
@@ -619,204 +416,100 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
         <div class="profile-avatar-lg" id="profile-avatar-lg">MD</div>
         <div>
           <div class="profile-name" id="profile-name-display">Player</div>
-          <div class="profile-email" id="profile-email-display"></div>
-          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:4px">
-            <span class="player-badge" id="profile-role-badge">PLAYER</span>
-            <span class="admin-badge" id="admin-badge" style="display:none">ADMIN</span>
-          </div>
+          <div class="profile-email" id="profile-email-display">loading...</div>
+          <span class="player-badge">⚡ Player</span>
+          <span class="admin-badge" id="admin-badge" style="display:none">👑 Admin</span>
         </div>
       </div>
-    </div>
-    <!-- STATS GRID -->
-    <div class="profile-stats-grid">
-      <div class="ps-item"><div class="ps-val g" id="ps-wins">0</div><div class="ps-label">Wins</div></div>
-      <div class="ps-item"><div class="ps-val r" id="ps-losses">0</div><div class="ps-label">Losses</div></div>
-      <div class="ps-item"><div class="ps-val b" id="ps-wr">0%</div><div class="ps-label">WR</div></div>
-      <div class="ps-item"><div class="ps-val o" id="ps-events">0</div><div class="ps-label">Events</div></div>
-      <div class="ps-item"><div class="ps-val" id="ps-ac">0</div><div class="ps-label">AC</div></div>
-    </div>
-    <!-- BADGES -->
-    <div class="profile-section-card">
-      <div class="psc-head"><div class="psc-title">🏅 Badges</div></div>
-      <div id="profile-badges-list"><div style="font-size:.85rem;color:var(--muted)">No badges yet — keep competing!</div></div>
-    </div>
-    <!-- MY TEAMS -->
-    <div class="profile-section-card">
-      <div class="psc-head"><div class="psc-title">👥 My Teams</div><div class="psc-action" onclick="switchScreen('teams')">View All</div></div>
-      <div id="profile-my-teams"><div style="font-size:.85rem;color:var(--muted)">No teams joined</div></div>
-    </div>
-    <!-- GAME PROFILE -->
-    <div class="profile-section-card">
-      <div class="psc-head"><div class="psc-title">🎮 Game Profile</div></div>
       <div class="form-gap">
-        <div><div class="label-sm">Free Fire UID</div><input class="input-field" id="profile-uid" placeholder="Your FF UID"></div>
-        <div><div class="label-sm">In-Game Name</div><input class="input-field" id="profile-ign" placeholder="Your IGN"></div>
-        <button class="orange-btn" onclick="updateProfile()">Save Profile</button>
+        <div><div class="label-sm">Free Fire UID</div>
+          <div class="input-wrap">
+            <svg class="ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input class="input-field" id="profile-uid" type="text" placeholder="Enter your UID...">
+          </div>
+        </div>
+        <div><div class="label-sm">In-Game Name (IGN)</div>
+          <div class="input-wrap">
+            <svg class="ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input class="input-field" id="profile-ign" type="text" placeholder="Your IGN...">
+          </div>
+        </div>
+        <button class="white-btn" onclick="updateProfile()">Update Details</button>
       </div>
     </div>
-    <!-- WALLET CARD -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+        <div><div class="stat-label">Wins</div><div class="stat-val" id="stat-wins">0</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="6" y="11" width="12" height="8" rx="2"/><path d="M2 17a2 2 0 0 0 2 2h1"/><path d="M22 17a2 2 0 0 1-2 2h-1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="9" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg></div>
+        <div><div class="stat-label">Matches</div><div class="stat-val" id="stat-matches">0</div></div>
+      </div>
+    </div>
     <div class="wallet-card">
       <div class="wallet-row">
-        <div><div class="wallet-label">AC Balance</div><div class="wallet-amount">৳<span id="wallet-bal">0.00</span></div></div>
-        <div class="wallet-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+        <div><div class="wallet-label">Available Balance</div><div class="wallet-amount"><span style="font-size:1.4rem;opacity:.8">৳</span><span id="wallet-bal">0.00</span></div></div>
+        <div class="wallet-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div>
       </div>
     </div>
-    <!-- STATS (hidden, used by old code) -->
-    <div style="display:none">
-      <span id="stat-wins">0</span>
-      <span id="stat-matches">0</span>
-    </div>
-    <!-- DEPOSIT/WITHDRAW TABS -->
     <div class="tab-row">
       <div class="tab-pill tab-white" id="tab-deposit" onclick="switchPayTab('deposit')">Add Money</div>
       <div class="tab-pill tab-ghost" id="tab-withdraw" onclick="switchPayTab('withdraw')">Withdraw</div>
     </div>
     <div id="panel-deposit">
       <div class="pay-card">
-        <div class="pay-title">Send Money To</div>
-        <div class="copy-row"><div><div class="copy-method">Bkash (Send Money)</div><div class="copy-num" id="bkash-num">Not set</div></div><button class="copy-btn" onclick="copyNum('bkash')">Copy</button></div>
-        <div class="copy-row"><div><div class="copy-method">Nagad (Send Money)</div><div class="copy-num" id="nagad-num">Not set</div></div><button class="copy-btn" onclick="copyNum('nagad')">Copy</button></div>
+        <div class="pay-title">💳 Payment Instructions</div>
+        <div class="copy-row"><div><div class="copy-method">Bkash</div><div class="copy-num" id="bkash-num">Not set</div></div><button class="copy-btn" onclick="copyNum('bkash')">Copy</button></div>
+        <div class="copy-row"><div><div class="copy-method">Nagad</div><div class="copy-num" id="nagad-num">Not set</div></div><button class="copy-btn" onclick="copyNum('nagad')">Copy</button></div>
         <div class="copy-row"><div><div class="copy-method">Rocket</div><div class="copy-num" id="rocket-num">Not set</div></div><button class="copy-btn" onclick="copyNum('rocket')">Copy</button></div>
-      </div>
-      <div class="pay-card">
-        <div class="pay-title">Deposit Form</div>
+        <div class="divider"></div>
         <div class="form-gap">
-          <div><div class="label-sm">Amount (BDT)</div><input class="input-field" id="dep-amount" type="number" placeholder="Min ৳10"></div>
-          <div><div class="label-sm">Method</div><select class="select-field" id="dep-method"><option>Bkash</option><option>Nagad</option><option>Rocket</option></select></div>
+          <div><div class="label-sm">Amount (BDT)</div><input class="input-field" id="dep-amount" type="number" placeholder="e.g. 500"></div>
+          <div><div class="label-sm">Payment Method</div><select class="select-field" id="dep-method"><option>Bkash</option><option>Nagad</option><option>Rocket</option></select></div>
           <div><div class="label-sm">Your Number</div><input class="input-field" id="dep-number" type="tel" placeholder="01XXXXXXXXX"></div>
-          <div><div class="label-sm">Transaction ID</div><input class="input-field" id="dep-trxid" placeholder="TrxID"></div>
-          <button class="orange-btn" onclick="submitDeposit()">Submit Deposit</button>
+          <div><div class="label-sm">Transaction ID (TrxID)</div><input class="input-field" id="dep-trxid" type="text" placeholder="e.g. TRX1234567"></div>
+          <button class="orange-btn" onclick="submitDeposit()">Submit Deposit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
         </div>
       </div>
-      <div class="sec-head" style="margin-top:8px"><div class="sec-head-title">Transaction History</div></div>
-      <div id="txn-list"></div>
+      <div class="sec-head" style="margin-top:4px"><div class="sec-head-title">Transaction Log</div></div>
+      <div id="txn-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
     </div>
     <div id="panel-withdraw" style="display:none">
       <div class="pay-card">
-        <div class="pay-title">Withdraw Request</div>
+        <div class="pay-title">💸 Withdraw Funds</div>
         <div class="form-gap">
           <div><div class="label-sm">Amount (BDT)</div><input class="input-field" id="wd-amount" type="number" placeholder="Min ৳100"></div>
           <div><div class="label-sm">Method</div><select class="select-field" id="wd-method"><option>Bkash</option><option>Nagad</option></select></div>
           <div><div class="label-sm">Your Number</div><input class="input-field" id="wd-number" type="tel" placeholder="01XXXXXXXXX"></div>
-          <button class="orange-btn" onclick="submitWithdraw()">Submit Withdraw</button>
+          <button class="orange-btn" onclick="submitWithdraw()">Submit Withdraw <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
         </div>
       </div>
+      <div style="height:16px"></div>
     </div>
-    <div style="height:16px"></div>
   </div>
 
   <!-- BOTTOM NAV -->
   <div class="bottom-nav">
     <div class="nav-item active" id="nav-tournaments" onclick="switchScreen('tournaments')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-      <span class="nav-label">Arena</span>
+      <span class="nav-label">Tournaments</span>
     </div>
-    <div class="nav-item" id="nav-teams" onclick="switchScreen('teams')">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <span class="nav-label">Teams</span>
+    <div class="nav-item" id="nav-history" onclick="switchScreen('history')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></svg>
+      <span class="nav-label">History</span>
     </div>
-    <div class="nav-item" id="nav-leaderboard" onclick="switchScreen('leaderboard')">
+    <div class="nav-item" id="nav-results" onclick="switchScreen('results')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-      <span class="nav-label">Ranks</span>
+      <span class="nav-label">Results</span>
     </div>
     <div class="nav-item" id="nav-profile" onclick="switchScreen('profile')">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <span class="nav-label">Profile</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="nav-label">My Profile</span>
     </div>
     <div class="nav-avatar" id="nav-avatar" onclick="handleAvatarClick()">?</div>
   </div>
 
-  <!-- SCREEN: TEAMS -->
-  <div class="screen" id="screen-teams">
-    <div style="padding:16px 16px 0">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;letter-spacing:.04em;margin-bottom:2px">👥 Teams</div>
-      <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Create &amp; Join Squads</div>
-    </div>
-    <div class="teams-actions">
-      <div class="team-action-btn primary" onclick="openCreateTeam()">
-        <div class="team-action-icon">➕</div>
-        <div><div class="team-action-label">Create Team</div><div class="team-action-sub">Start your squad</div></div>
-      </div>
-      <div class="team-action-btn" onclick="openJoinTeam()">
-        <div class="team-action-icon">🔑</div>
-        <div><div class="team-action-label">Join Team</div><div class="team-action-sub">Enter team ID</div></div>
-      </div>
-    </div>
-    <div class="teams-tab-row">
-      <div class="teams-tab active" id="ttab-all" onclick="switchTeamsTab('all',this)">All Teams</div>
-      <div class="teams-tab" id="ttab-my" onclick="switchTeamsTab('my',this)">My Teams</div>
-    </div>
-    <div id="teams-list"><div class="loading-wrap"><div class="spinner"></div><span>Loading...</span></div></div>
-  </div>
-
-  <!-- SCREEN: LEADERBOARD -->
-  <div class="screen" id="screen-leaderboard">
-    <div class="lb-hero">
-      <div class="lb-eyebrow">// Hall of Fame</div>
-      <div class="lb-title">LEADERBOARD</div>
-    </div>
-    <div class="lb-tabs">
-      <div class="lb-tab active" id="lbtab-wins" onclick="switchLbTab('wins',this)">⚔️ Wins</div>
-      <div class="lb-tab" id="lbtab-wr" onclick="switchLbTab('wr',this)">📊 Win Rate</div>
-      <div class="lb-tab" id="lbtab-events" onclick="switchLbTab('events',this)">🏆 Events</div>
-    </div>
-    <div id="lb-podium-wrap" class="lb-podium"></div>
-    <div id="lb-list"></div>
-  </div>
-
-</div>
-
-<!-- MODERATOR PANEL -->
-<div class="mod-screen" id="mod-panel">
-  <div class="mod-header">
-    <div class="mod-title">🛡️ MODERATOR PANEL</div>
-    <button class="mod-close-btn" onclick="document.getElementById('mod-panel').classList.remove('active')">✕ Close</button>
-  </div>
-  <div class="mod-nav">
-    <div class="mod-tab active" onclick="modTab(this,'mt-tournaments')">🏆 Tournaments</div>
-    <div class="mod-tab" onclick="modTab(this,'mt-result')">🖼️ Results</div>
-    <div class="mod-tab" onclick="modTab(this,'mt-players')">👥 Players</div>
-  </div>
-  <div class="mod-section active" id="mt-tournaments">
-    <div class="admin-card">
-      <div class="admin-card-title">➕ Add Tournament</div>
-      <div class="form-gap">
-        <div><div class="label-sm">Tournament Name</div><input class="input-field" id="mt-name" placeholder="e.g. HP Cup S2"></div>
-        <div><div class="label-sm">Game Mode</div><select class="select-field" id="mt-mode"><option value="solo">Solo</option><option value="duo">Duo</option><option value="squad">Squad</option></select></div>
-        <div><div class="label-sm">Map</div><select class="select-field" id="mt-map"><option>Bermuda</option><option>Kalahari</option><option>Purgatory</option><option>Alpine</option><option>Solara</option><option>Nextera</option></select></div>
-        <div style="display:flex;gap:10px">
-          <div style="flex:1"><div class="label-sm">Date</div><input class="input-field" id="mt-date" placeholder="25 May"></div>
-          <div style="flex:1"><div class="label-sm">Time</div><input class="input-field" id="mt-time" placeholder="8:00 PM"></div>
-        </div>
-        <div style="display:flex;gap:10px">
-          <div style="flex:1"><div class="label-sm">Slots</div><input class="input-field" id="mt-slots" type="number" placeholder="64"></div>
-          <div style="flex:1"><div class="label-sm">Prize (৳)</div><input class="input-field" id="mt-prize" type="number" placeholder="800"></div>
-        </div>
-        <div><div class="label-sm">Entry Fee (৳) — 0 free</div><input class="input-field" id="mt-fee" type="number" placeholder="50"></div>
-        <button class="orange-btn" onclick="modAddTournament()">Add Tournament</button>
-      </div>
-    </div>
-    <div class="admin-card"><div class="admin-card-title">📋 All Tournaments</div><div id="mod-t-list"><div class="loading-wrap"><div class="spinner"></div></div></div></div>
-  </div>
-  <div class="mod-section" id="mt-result">
-    <div class="admin-card">
-      <div class="admin-card-title">🖼️ Upload Result</div>
-      <div class="form-gap">
-        <div><div class="label-sm">Title</div><input class="input-field" id="mod-res-title" placeholder="Tournament Result Title"></div>
-        <div><div class="label-sm">Image</div>
-          <label style="display:block;background:var(--bg3);border:2px dashed var(--orange-border);border-radius:12px;padding:20px;text-align:center;cursor:pointer" for="mod-res-img">
-            <div id="mod-res-preview" style="font-size:2.5rem;margin-bottom:6px">📷</div>
-            <div style="font-size:.78rem;color:var(--muted)">ছবি select করুন</div>
-            <input type="file" id="mod-res-img" accept="image/*" style="display:none" onchange="modPreviewImg(this)">
-          </label>
-        </div>
-        <button class="orange-btn" onclick="modUploadResult()">📤 Upload</button>
-      </div>
-    </div>
-  </div>
-  <div class="mod-section" id="mt-players">
-    <div class="admin-card"><div class="admin-card-title">👥 Registered Players (View Only)</div><div id="mod-players-list"><div class="loading-wrap"><div class="spinner"></div></div></div></div>
-  </div>
 </div>
 
 <!-- ADMIN PANEL -->
@@ -825,14 +518,13 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
     <div class="admin-title">⚡ <span>ADMIN</span> PANEL</div>
     <button class="admin-logout-btn" onclick="document.getElementById('admin-panel').classList.remove('active')">✕ Close</button>
   </div>
-  <div class="admin-nav" id="admin-nav-bar">
+  <div class="admin-nav">
     <div class="admin-tab active" onclick="adminTab(this,'at-tournaments')">🏆 Tournaments</div>
     <div class="admin-tab" onclick="adminTab(this,'at-players')">👥 Players</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-deposits')">💰 Deposits</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-balances')">📊 Balances</div>
     <div class="admin-tab" onclick="adminTab(this,'at-result')">🖼️ Result</div>
-    <div class="admin-tab admin-owner-only" onclick="adminTab(this,'at-deposits')" style="display:none">💰 Deposits</div>
-    <div class="admin-tab admin-owner-only" onclick="adminTab(this,'at-balances')" style="display:none">📊 Balances</div>
-    <div class="admin-tab admin-owner-only" onclick="adminTab(this,'at-promote')" style="display:none">⭐ Promote</div>
-    <div class="admin-tab admin-owner-only" onclick="adminTab(this,'at-settings')" style="display:none">⚙️ Settings</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-settings')">⚙️ Settings</div>
   </div>
   <div class="admin-section active" id="at-tournaments">
     <div class="admin-card">
@@ -840,7 +532,41 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
       <div class="form-gap">
         <div><div class="label-sm">Tournament Name</div><input class="input-field" id="t-name" placeholder="e.g. Blaze Cup S6"></div>
         <div><div class="label-sm">Game Mode</div><select class="select-field" id="t-mode"><option value="solo">Solo (1 player)</option><option value="duo">Duo (2 players)</option><option value="squad">Squad (4 players)</option></select></div>
-        <div><div class="label-sm">Map</div><select class="select-field" id="t-map"><option>Bermuda</option><option>Purgatory</option><option>Kalahari</option><option>Alpine</option></select></div>
+        <div>
+          <div class="label-sm">কতটি Map এ খেলা হবে?</div>
+          <select class="select-field" id="t-map-count" onchange="updateMapCheckboxes()">
+            <option value="1">1 টি Map</option>
+            <option value="2">2 টি Map</option>
+            <option value="3">3 টি Map</option>
+            <option value="4">4 টি Map</option>
+            <option value="5">5 টি Map</option>
+            <option value="6">6 টি Map (সব)</option>
+          </select>
+        </div>
+        <div id="map-checkbox-wrap" style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px">
+          <div class="label-sm" style="margin-bottom:10px">Map(গুলো) select করুন</div>
+          <div id="map-checkboxes" style="display:flex;flex-direction:column;gap:8px">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Bermuda" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Bermuda</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Kalahari" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Kalahari</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Purgatory" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Purgatory</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Alpine" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Alpine</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Solara" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Solara</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
+              <input type="checkbox" name="map-cb" value="Nextera" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Nextera</span>
+            </label>
+          </div>
+          <div id="map-count-hint" style="font-size:.72rem;color:var(--orange);margin-top:8px;font-weight:600">⚠️ ঠিক 1 টি map select করুন</div>
+        </div>
         <div style="display:flex;gap:10px">
           <div style="flex:1"><div class="label-sm">Date</div><input class="input-field" id="t-date" placeholder="25 May"></div>
           <div style="flex:1"><div class="label-sm">Time</div><input class="input-field" id="t-time" placeholder="8:00 PM"></div>
@@ -895,28 +621,6 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
       <div id="admin-result-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
     </div>
   </div>
-  <div class="admin-section" id="at-promote">
-    <div class="admin-card">
-      <div class="admin-card-title">⭐ Promote Player</div>
-      <div style="font-size:.8rem;color:var(--muted);margin-bottom:12px">Player কে Admin বা Moderator বানাতে পারবেন। শুধু Owner এই কাজ করতে পারবে।</div>
-      <div class="form-gap">
-        <div><div class="label-sm">Player Email</div><input class="input-field" id="promote-email" placeholder="player@email.com"></div>
-        <div><div class="label-sm">Role দিন</div>
-          <select class="select-field" id="promote-role">
-            <option value="player">Player (সাধারণ)</option>
-            <option value="moderator">Moderator</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-        <button class="orange-btn" onclick="promotePlayer()">⭐ Role দিন</button>
-      </div>
-    </div>
-    <div class="admin-card">
-      <div class="admin-card-title">👥 All Users & Roles</div>
-      <div id="promote-users-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
-    </div>
-  </div>
-
   <div class="admin-section" id="at-settings">
     <div class="admin-card">
       <div class="admin-card-title">⚙️ Payment Numbers</div>
@@ -964,36 +668,24 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-const OWNER_EMAIL = 'kingshadinop44@gmail.com';
 const ADMIN_EMAIL = 'kingshadinop44@gmail.com';
 let currentUser = null;
 let currentUserData = {};
 let paymentSettings = {};
 let joinTournamentData = null;
 let isAdmin = false;
-let userRole = 'player'; // owner | admin | moderator | player
 
 // ── AUTH STATE LISTENER ──
 onAuthStateChanged(auth, async (user) => {
   document.getElementById('splash').style.display = 'none';
   if (user) {
     currentUser = user;
+    isAdmin = user.email === ADMIN_EMAIL;
     await loadUserData(user);
-    if (user.email === OWNER_EMAIL) {
-      userRole = 'owner';
-      isAdmin = true;
-    } else {
-      try {
-        const rSnap = await getDoc(doc(db,'roles',user.uid));
-        userRole = rSnap.exists() ? (rSnap.data().role || 'player') : 'player';
-        isAdmin = (userRole === 'admin' || userRole === 'moderator');
-      } catch(e) { userRole = 'player'; isAdmin = false; }
-    }
     showApp();
   } else {
     currentUser = null;
     isAdmin = false;
-    userRole = 'player';
     showPage('login');
   }
 });
@@ -1007,34 +699,9 @@ function showApp() {
   loadSettings();
   loadTransactions();
   loadUserResults();
-  loadProfileMyTeams();
-  // Role badge
-  const roleBadge = document.getElementById('profile-role-badge');
-  const adminBadge = document.getElementById('admin-badge');
-  if (userRole === 'owner') {
-    roleBadge.textContent = '👑 OWNER'; roleBadge.className = 'badge-owner';
-    adminBadge.style.display = 'none';
-    // Show owner-only admin tabs
-    document.querySelectorAll('.admin-owner-only').forEach(el => el.style.display = '');
-  } else if (userRole === 'admin') {
-    roleBadge.textContent = '⚡ ADMIN'; roleBadge.className = 'badge-admin';
-    adminBadge.style.display = 'none';
-  } else if (userRole === 'moderator') {
-    roleBadge.textContent = '🛡️ MOD'; roleBadge.className = 'badge-mod';
-    adminBadge.style.display = 'none';
-  } else {
-    roleBadge.textContent = 'PLAYER'; roleBadge.className = 'player-badge';
-    adminBadge.style.display = 'none';
+  if (isAdmin) {
+    document.getElementById('admin-badge').style.display = 'inline-block';
   }
-  // Update stats grid
-  const ud = currentUserData;
-  const wins = ud.wins||0, losses = ud.losses||0;
-  const wr = (wins+losses)>0 ? Math.round(wins/(wins+losses)*100) : 0;
-  document.getElementById('ps-wins').textContent = wins;
-  document.getElementById('ps-losses').textContent = losses;
-  document.getElementById('ps-wr').textContent = wr+'%';
-  document.getElementById('ps-events').textContent = ud.matches||0;
-  document.getElementById('ps-ac').textContent = Math.round(ud.balance||0);
 }
 
 function updateNavAvatar() {
@@ -1179,13 +846,17 @@ function buildTCard(t) {
   const isFull = left <= 0;
   const modeLabel = t.mode==='solo'?'Solo':t.mode==='duo'?'Duo':'Squad';
   const slotColor = left<=5?'var(--red)':'var(--muted)';
+  // Multi-map display
+  const maps = t.maps || [t.map||'Bermuda'];
+  const mapBadges = maps.map(m=>`<span style="display:inline-block;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:5px;padding:2px 7px;font-size:.65rem;font-weight:700;color:var(--orange);margin:2px 2px 0 0">${m}</span>`).join('');
   return `<div class="t-card">
     <div class="t-card-head">
       <div><span class="${isFull?'badge-red':'badge-green'}">${isFull?'FULL':'OPEN'}</span> <span class="t-card-name">${t.name}</span></div>
       <div class="t-card-date">📅 ${t.date||''}</div>
     </div>
     <div class="t-card-body">
-      <div class="t-card-map">🗺️ ${modeLabel} · ${t.map||''} · ⏰ ${t.time||''}</div>
+      <div class="t-card-map">🗺️ ${modeLabel} · ⏰ ${t.time||''}</div>
+      <div style="margin-bottom:10px">${mapBadges}</div>
       <div class="t-meta-row">
         <div class="t-meta-item">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
@@ -1357,4 +1028,399 @@ async function loadMyRegistrations() {
     const list = document.getElementById('my-regs-list');
     if (snap.empty) { list.innerHTML=`<div class="empty-state"><div class="empty-icon">📂</div><div class="empty-text">No matches yet.<br>Join a tournament!</div></div>`; return; }
     const docs=[]; snap.forEach(d=>docs.push({id:d.id,...d.data()}));
-    docs.sort((a,b
+    docs.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    list.innerHTML='';
+    docs.forEach(r=>{
+      const name=r.teamName||r.igl||r.p1||'Unknown';
+      list.innerHTML+=`<div class="t-card"><div class="t-card-head"><div><span class="badge-green">Registered</span> <span class="t-card-name">${name}</span></div><div class="t-card-date">${r.createdAt?.toDate?.()?.toLocaleDateString('en-GB')||''}</div></div><div class="t-card-body"><div class="t-card-map">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()||''}</div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">UID: ${r.uid} · 📞 ${r.phone}</div></div></div>`;
+    });
+  } catch(e) {}
+}
+
+// ── COPY ──
+window.copyNum = function(type) {
+  const num = paymentSettings[type]||'';
+  if (!num||num==='Not set') { showToast('Number set করা নেই'); return; }
+  navigator.clipboard.writeText(num).catch(()=>{});
+  showToast('✅ Copied: '+num);
+}
+
+// ── UPDATE PROFILE ──
+window.updateProfile = async function() {
+  if (!currentUser) return;
+  const uid=document.getElementById('profile-uid').value.trim(),ign=document.getElementById('profile-ign').value.trim();
+  try {
+    await setDoc(doc(db,'users',currentUser.uid),{uid,ign},{merge:true});
+    currentUserData.uid=uid; currentUserData.ign=ign;
+    showToast('✅ Profile updated!');
+  } catch(e) { showToast('Error!'); }
+}
+
+// ── WHATSAPP ──
+window.openWhatsApp = function() { window.open(`https://wa.me/${paymentSettings.wa||'880'}`,'_blank'); }
+
+// ── ADMIN ──
+window.handleAvatarClick = function() {
+  if (isAdmin) {
+    document.getElementById('admin-panel').classList.add('active');
+    loadAdminData();
+  } else {
+    showToast('Admin access নেই!');
+  }
+}
+
+async function loadAdminData() {
+  loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults();
+}
+
+async function loadAdminTournaments() {
+  try {
+    const snap=await getDocs(query(collection(db,'tournaments'),orderBy('createdAt','desc')));
+    const list=document.getElementById('admin-t-list');
+    if(snap.empty){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No tournaments yet.</div>';return;}
+    list.innerHTML='';
+    snap.forEach(d=>{const t=d.data();list.innerHTML+=`<div class="t-item"><div class="t-item-head"><div class="t-item-name">${t.name}</div><div style="display:flex;gap:6px"><button class="detail-btn" onclick="viewTournamentRegs('${d.id}','${t.name}')">👥 Players</button><button class="delete-btn" onclick="deleteTournament('${d.id}')">Delete</button></div></div><div class="t-item-meta">${t.mode} · ${t.map} · ${t.date} · ৳${t.prize} prize · <span style="color:var(--orange);font-weight:700">${t.registered||0}/${t.slots} filled</span> · Fee:৳${t.fee||0}</div></div>`;});
+  } catch(e) {}
+}
+
+window.addTournament = async function() {
+  const name=document.getElementById('t-name').value.trim(),mode=document.getElementById('t-mode').value,date=document.getElementById('t-date').value.trim(),time=document.getElementById('t-time').value.trim(),slots=parseInt(document.getElementById('t-slots').value),prize=parseInt(document.getElementById('t-prize').value)||0,fee=parseInt(document.getElementById('t-fee').value)||0;
+  // Multi-map selection
+  const mapCount = parseInt(document.getElementById('t-map-count').value)||1;
+  const checkedMaps = [...document.querySelectorAll('input[name="map-cb"]:checked')].map(cb=>cb.value);
+  if(!name||!date||!slots){showToast('Name, Date ও Slots দিন!');return;}
+  if(checkedMaps.length===0){showToast('কমপক্ষে ১টি map select করুন!');return;}
+  if(checkedMaps.length!==mapCount){showToast(`ঠিক ${mapCount} টি map select করুন! (এখন ${checkedMaps.length} টি)`);return;}
+  const mapDisplay = checkedMaps.join(' · ');
+  try {
+    await addDoc(collection(db,'tournaments'),{name,mode,map:mapDisplay,maps:checkedMaps,mapCount,date,time,slots,prize,fee,registered:0,createdAt:serverTimestamp()});
+    showToast('✅ Tournament added!');
+    ['t-name','t-date','t-time','t-slots','t-prize','t-fee'].forEach(id=>document.getElementById(id).value='');
+    document.querySelectorAll('input[name="map-cb"]').forEach(cb=>cb.checked=false);
+    document.getElementById('t-map-count').value='1';
+    updateMapCheckboxes();
+    loadAdminTournaments(); loadTournaments();
+  } catch(e) { showToast('Error: '+e.message); }
+}
+
+window.deleteTournament = async function(id) {
+  if(!confirm('Delete করবেন?'))return;
+  await deleteDoc(doc(db,'tournaments',id));
+  showToast('✅ Deleted!'); loadAdminTournaments(); loadTournaments();
+}
+
+window._loadAdminRegistrations = async function loadAdminRegistrations() {
+  try {
+    const snap=await getDocs(collection(db,'registrations'));
+    const list=document.getElementById('admin-reg-list');
+    if(snap.empty){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No registrations yet.</div>';return;}
+    list.innerHTML='';
+    // Sort client-side by createdAt desc
+    const docs=[]; snap.forEach(d=>docs.push({id:d.id,...d.data()}));
+    docs.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    docs.forEach(r=>{
+      const name=r.teamName||r.igl||r.p1||'Unknown',icon=r.mode==='solo'?'👤':r.mode==='duo'?'👥':'⚔️';
+      list.innerHTML+=`<div class="reg-item"><div class="reg-head"><div><div class="reg-name">${icon} ${name}</div><span class="txn-status s-approved" style="font-size:.6rem">✅ Registered</span></div><button class="detail-btn" onclick="showRegDetails('${r.id}')">Details</button></div><div class="reg-meta">🏆 ${r.tournamentName} · ${r.mode?.toUpperCase()}</div><div class="reg-meta">👤 ${r.playerEmail} · 📞 ${r.phone}</div></div>`;
+    });
+  } catch(e) { console.log(e); }
+}
+
+window.showRegDetails = async function(regId) {
+  try {
+    const snap=await getDoc(doc(db,'registrations',regId));
+    if(!snap.exists())return;
+    const r=snap.data();
+    let pr='';
+    if(r.mode==='solo') pr=`<div class="detail-row"><span class="detail-key">Player</span><span class="detail-val">${r.p1||'-'}</span></div>`;
+    else if(r.mode==='duo') pr=`<div class="detail-row"><span class="detail-key">IGL</span><span class="detail-val">${r.igl||'-'}</span></div><div class="detail-row"><span class="detail-key">2nd</span><span class="detail-val">${r.p2||'-'}</span></div>`;
+    else pr=`<div class="detail-row"><span class="detail-key">Team</span><span class="detail-val">${r.teamName||'-'}</span></div><div class="detail-row"><span class="detail-key">IGL</span><span class="detail-val">${r.igl||'-'}</span></div><div class="detail-row"><span class="detail-key">2nd</span><span class="detail-val">${r.p2||'-'}</span></div><div class="detail-row"><span class="detail-key">3rd</span><span class="detail-val">${r.p3||'-'}</span></div><div class="detail-row"><span class="detail-key">4th</span><span class="detail-val">${r.p4||'-'}</span></div>`;
+    const modal=document.createElement('div');
+    modal.className='detail-modal';
+    modal.innerHTML=`<div class="detail-box"><div class="detail-title">📋 Registration Details</div><div class="detail-row"><span class="detail-key">Tournament</span><span class="detail-val">${r.tournamentName}</span></div><div class="detail-row"><span class="detail-key">Mode</span><span class="detail-val">${r.mode?.toUpperCase()}</span></div>${pr}<div class="detail-row"><span class="detail-key">FF UID</span><span class="detail-val">${r.uid}</span></div><div class="detail-row"><span class="detail-key">Phone</span><span class="detail-val">${r.phone}</span></div><div class="detail-row"><span class="detail-key">Email</span><span class="detail-val" style="font-size:.75rem">${r.playerEmail}</span></div><div class="detail-row"><span class="detail-key">Name</span><span class="detail-val">${r.playerName||'-'}</span></div><div style="display:flex;gap:8px;margin-top:16px"><button onclick="this.closest('.detail-modal').remove()" style="flex:1;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">Close</button><button onclick="deleteReg('${regId}');this.closest('.detail-modal').remove()" style="flex:1;padding:12px;background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3);border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">Remove</button></div></div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
+  } catch(e) { showToast('Error!'); }
+}
+
+window.deleteReg = async function(id) {
+  try {
+    const rSnap = await getDoc(doc(db,'registrations',id));
+    if(rSnap.exists()) {
+      const rData = rSnap.data();
+      await deleteDoc(doc(db,'registrations',id));
+      // Decrement slot count on the tournament
+      if(rData.tournamentId) {
+        await updateDoc(doc(db,'tournaments',rData.tournamentId), {registered: increment(-1)}).catch(()=>{});
+      }
+    }
+    showToast('✅ Removed!');
+    loadAdminRegistrations();
+    loadAdminTournaments();
+    loadTournaments();
+  } catch(e) { showToast('Error removing!'); }
+}
+
+window._loadAdminDeposits = async function loadAdminDeposits() {
+  try {
+    const snap=await getDocs(query(collection(db,'deposits'),where('status','==','pending')));
+    const list=document.getElementById('admin-dep-list');
+    if(snap.empty){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No pending deposits.</div>';return;}
+    list.innerHTML='';
+    snap.forEach(d=>{
+      const dep=d.data();
+      list.innerHTML+=`<div class="reg-item"><div class="reg-head"><div><div class="reg-name">৳${dep.amount} · ${dep.method}</div><div class="reg-meta">TrxID: ${dep.trxid} · 📞 ${dep.number}</div></div><div style="display:flex;flex-direction:column;gap:5px"><button class="approve-btn" onclick="approveDeposit('${d.id}','${dep.playerUid}',${dep.amount})">✓ Approve</button><button class="reject-btn" onclick="rejectDeposit('${d.id}')">✗ Reject</button></div></div><div class="reg-meta">👤 ${dep.playerEmail} · ${dep.playerName||''}</div></div>`;
+    });
+  } catch(e) {}
+}
+
+window.approveDeposit = async function(id, playerUid, amount) {
+  try {
+    await updateDoc(doc(db,'deposits',id),{status:'approved'});
+    await updateDoc(doc(db,'users',playerUid),{balance:increment(amount)});
+    showToast(`✅ ৳${amount} approved!`);
+    loadAdminDeposits(); loadAdminBalances();
+    if (playerUid===currentUser?.uid) { currentUserData.balance=(currentUserData.balance||0)+amount; document.getElementById('wallet-bal').textContent=currentUserData.balance.toFixed(2); }
+  } catch(e) { showToast('Error: '+e.message); }
+}
+
+window.rejectDeposit = async function(id) {
+  await updateDoc(doc(db,'deposits',id),{status:'rejected'});
+  showToast('❌ Rejected!'); loadAdminDeposits();
+}
+
+window._loadAdminBalances = async function loadAdminBalances() {
+  try {
+    const snap=await getDocs(collection(db,'users'));
+    const list=document.getElementById('admin-bal-list');
+    if(snap.empty){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No players.</div>';return;}
+    list.innerHTML='';
+    snap.forEach(d=>{const u=d.data();list.innerHTML+=`<div class="reg-item"><div class="reg-head"><div><div class="reg-name">${u.displayName||u.ign||'Player'}</div><div class="reg-meta">${u.email||''}</div></div><div style="font-family:Barlow Condensed,sans-serif;font-size:1.2rem;font-weight:900;color:var(--orange)">৳${(u.balance||0).toFixed(0)}</div></div><div class="reg-meta">Wins:${u.wins||0} · Matches:${u.matches||0}</div></div>`;});
+  } catch(e) {}
+}
+
+window.adjustBalance = async function(action) {
+  const player=document.getElementById('bal-player').value.trim(),amount=parseFloat(document.getElementById('bal-amount').value);
+  if(!player||!amount){showToast('Email ও amount দিন!');return;}
+  try {
+    // Find user by email
+    const snap=await getDocs(query(collection(db,'users'),where('email','==',player)));
+    if(snap.empty){showToast('Player পাওয়া যায়নি!');return;}
+    const userDoc=snap.docs[0];
+    await updateDoc(doc(db,'users',userDoc.id),{balance:increment(action==='add'?amount:-amount)});
+    showToast(`✅ Balance ${action==='add'?'added':'deducted'}!`);
+    loadAdminBalances();
+  } catch(e) { showToast('Error: '+e.message); }
+}
+
+window.saveSettings = async function() {
+  const bkash=document.getElementById('set-bkash').value.trim(),nagad=document.getElementById('set-nagad').value.trim(),rocket=document.getElementById('set-rocket').value.trim();
+  await setDoc(doc(db,'settings','main'),{bkash,nagad,rocket},{merge:true});
+  document.getElementById('bkash-num').textContent=bkash||'Not set';
+  document.getElementById('nagad-num').textContent=nagad||'Not set';
+  document.getElementById('rocket-num').textContent=rocket||'Not set';
+  paymentSettings={...paymentSettings,bkash,nagad,rocket};
+  showToast('✅ Saved!');
+}
+
+window.saveTicker = async function() {
+  const ticker=document.getElementById('set-ticker').value.trim();
+  await setDoc(doc(db,'settings','main'),{ticker},{merge:true});
+  document.getElementById('main-ticker').innerHTML=`<span>⚡ ${ticker}</span><span>⚡ ${ticker}</span>`;
+  showToast('✅ Ticker updated!');
+}
+
+window.saveWA = async function() {
+  const wa=document.getElementById('set-wa').value.trim();
+  await setDoc(doc(db,'settings','main'),{wa},{merge:true});
+  paymentSettings.wa=wa;
+  showToast('✅ WhatsApp saved!');
+}
+
+window._loadTransactions = loadTransactions;
+window._loadMyRegs = loadMyRegistrations;
+window._loadAdminData = loadAdminData;
+
+// ── ADMIN: VIEW TOURNAMENT REGISTRATIONS ──
+window.viewTournamentRegs = async function(tId, tName) {
+  try {
+    const snap = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',tId)));
+    const modal = document.createElement('div');
+    modal.className = 'detail-modal';
+    let rows = '';
+    if(snap.empty) {
+      rows = '<div style="text-align:center;color:var(--muted);padding:20px">কোনো registration নেই</div>';
+    } else {
+      let i=0;
+      snap.forEach(d=>{
+        i++;
+        const r=d.data();
+        let name='', members='';
+        if(r.mode==='solo'){name=r.p1||r.displayName||'Player';members='Solo player';}
+        else if(r.mode==='duo'){name=r.igl||r.displayName||'IGL';members=`IGL: ${r.igl||'-'} | 2nd: ${r.p2||'-'}`;}
+        else{name=r.teamName||r.igl||'Team';members=`IGL:${r.igl||'-'} | P2:${r.p2||'-'} | P3:${r.p3||'-'} | P4:${r.p4||'-'}`;}
+        rows+=`<div class="team-row"><div class="team-num">${i}</div><div class="team-info"><div class="team-name">${name}</div><div class="team-members">${members}</div><div class="team-members">UID: ${r.uid} · 📞 ${r.phone}</div></div><button onclick="deleteReg('${d.id}');this.closest('.detail-modal').remove()" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);border-radius:6px;padding:5px 8px;font-size:.65rem;font-weight:700;cursor:pointer;flex-shrink:0">Remove</button></div>`;
+      });
+    }
+    modal.innerHTML=`<div class="detail-box"><div class="detail-title">👥 ${tName} — Players (${snap.size})</div>${rows}<button onclick="this.closest('.detail-modal').remove()" style="width:100%;margin-top:16px;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">Close</button></div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
+  } catch(e){ showToast('Error: '+e.message); }
+}
+
+// ── VIEW TOURNAMENT TEAMS (user side) ──
+window.viewTournamentTeams = async function(tId, tName) {
+  try {
+    const snap = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',tId)));
+    const modal = document.createElement('div');
+    modal.className = 'teams-modal';
+    let rows = '';
+    if(snap.empty) {
+      rows = '<div style="text-align:center;color:var(--muted);padding:20px;font-size:.88rem">এখনো কেউ join করেনি</div>';
+    } else {
+      let i=0;
+      snap.forEach(d=>{
+        i++;
+        const r=d.data();
+        let name='', members='';
+        if(r.mode==='solo'){name=r.p1||r.displayName||'Player';members='Solo';}
+        else if(r.mode==='duo'){name=r.igl||r.displayName||'IGL';members=[r.igl,r.p2].filter(Boolean).join(' + ');}
+        else{name=r.teamName||r.igl||'Team';const ml=[r.igl,r.p2,r.p3,r.p4].filter(Boolean);members=ml.join(', ');}
+        rows+=`<div class="team-row"><div class="team-num">${i}</div><div class="team-info"><div class="team-name">${name}</div><div class="team-members">${members}</div></div><div style="font-size:.7rem;color:var(--muted)">${r.mode?.toUpperCase()}</div></div>`;
+      });
+    }
+    modal.innerHTML=`<div class="teams-box"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div style="font-family:Barlow Condensed,sans-serif;font-size:1.2rem;font-weight:900;text-transform:uppercase">👥 ${tName}</div><button onclick="this.closest('.teams-modal').remove()" style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;color:var(--muted);cursor:pointer;font-size:1.1rem">✕</button></div><div style="font-size:.72rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em">Joined Teams / Players</div>${rows}</div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
+  } catch(e){ showToast('Error loading teams!'); }
+}
+
+// ── RESULT IMAGE PREVIEW ──
+window.previewResultImg = function(input) {
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('res-img-preview').innerHTML = `<img src="${e.target.result}" style="max-height:120px;border-radius:8px;max-width:100%">`;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── UPLOAD RESULT (stores base64 image in Firestore) ──
+window.uploadResult = async function() {
+  const title = document.getElementById('res-title').value.trim();
+  const input = document.getElementById('res-img-input');
+  const file = input.files[0];
+  if(!title){ showToast('Title দিন!'); return; }
+  if(!file){ showToast('ছবি select করুন!'); return; }
+  if(file.size > 900000){ showToast('❌ ছবি 900KB-এর কম হতে হবে!'); return; }
+  const btn = document.querySelector('#at-result .orange-btn');
+  btn.disabled=true; btn.textContent='Uploading...';
+  try {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64 = e.target.result;
+      await addDoc(collection(db,'results'),{title, imageBase64:base64, createdAt:serverTimestamp()});
+      showToast('✅ Result uploaded!');
+      document.getElementById('res-title').value='';
+      input.value='';
+      document.getElementById('res-img-preview').innerHTML='📷';
+      loadAdminResults();
+      loadUserResults();
+      btn.disabled=false; btn.textContent='📤 Upload Result';
+    };
+    reader.readAsDataURL(file);
+  } catch(e){ showToast('Error: '+e.message); btn.disabled=false; btn.textContent='📤 Upload Result'; }
+}
+
+// ── LOAD ADMIN RESULTS ──
+window._loadAdminResults = async function loadAdminResults() {
+  const list = document.getElementById('admin-result-list');
+  if(!list) return;
+  try {
+    const snap = await getDocs(query(collection(db,'results'), orderBy('createdAt','desc')));
+    if(snap.empty){ list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No results yet.</div>'; return; }
+    list.innerHTML='';
+    snap.forEach(d=>{
+      const r=d.data();
+      list.innerHTML+=`<div class="t-item"><div class="t-item-head"><div class="t-item-name">${r.title}</div><button class="delete-btn" onclick="deleteResult('${d.id}')">Delete</button></div><img src="${r.imageBase64}" style="width:100%;border-radius:8px;margin-top:8px;max-height:200px;object-fit:contain;background:#111"></div>`;
+    });
+  } catch(e){}
+}
+
+window.deleteResult = async function(id) {
+  if(!confirm('Delete করবেন?'))return;
+  await deleteDoc(doc(db,'results',id));
+  showToast('✅ Deleted!'); loadAdminResults(); loadUserResults();
+}
+
+// ── LOAD USER RESULTS ──
+window._loadUserResults = async function loadUserResults() {
+  const list = document.getElementById('user-result-list');
+  if(!list) return;
+  try {
+    const snap = await getDocs(query(collection(db,'results'), orderBy('createdAt','desc')));
+    if(snap.empty){ list.innerHTML='<div class="empty-state"><div class="empty-icon">🏆</div><div class="empty-text">এখনো কোনো result নেই</div></div>'; return; }
+    list.innerHTML='';
+    snap.forEach(d=>{
+      const r=d.data();
+      list.innerHTML+=`<div class="result-card"><div class="result-card-head"><div class="result-card-title">🏆 ${r.title}</div><span class="badge-orange">OFFICIAL</span></div><img src="${r.imageBase64}" loading="lazy" alt="${r.title}"></div>`;
+    });
+  } catch(e){ list.innerHTML='<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-text">Load হয়নি</div></div>'; }
+}
+</script>
+
+<script>
+function updateMapCheckboxes() {
+  const count = parseInt(document.getElementById('t-map-count').value)||1;
+  const hint = document.getElementById('map-count-hint');
+  const cbs = document.querySelectorAll('input[name="map-cb"]');
+  if(count === 6) {
+    cbs.forEach(cb => cb.checked = true);
+    hint.textContent = '\u2705 \u09b8\u09ac 6\u099f\u09bf map selected!';
+    hint.style.color = 'var(--green)';
+  } else {
+    cbs.forEach(cb => cb.checked = false);
+    hint.textContent = '\u26a0\ufe0f \u09a8\u09bf\u099a \u09a5\u09c7\u0995\u09c7 \u09af\u09c7\u0995\u09cb\u09a8\u09cb ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09c1\u09a8';
+    hint.style.color = 'var(--orange)';
+  }
+}
+
+function onMapCheck(cb) {
+  const count = parseInt(document.getElementById('t-map-count').value)||1;
+  const hint = document.getElementById('map-count-hint');
+  const checked = document.querySelectorAll('input[name="map-cb"]:checked');
+  if(checked.length > count) {
+    cb.checked = false;
+    showToast('\u09b8\u09b0\u09cd\u09ac\u09cb\u099a\u09cd\u099a ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09be \u09af\u09be\u09ac\u09c7!');
+    return;
+  }
+  const now = document.querySelectorAll('input[name="map-cb"]:checked').length;
+  if(now === count) {
+    hint.textContent = '\u2705 ' + count + ' \u099f\u09bf map selected!';
+    hint.style.color = 'var(--green)';
+  } else {
+    hint.textContent = '\u26a0\ufe0f \u0986\u09b0\u09cb ' + (count-now) + ' \u099f\u09bf select \u0995\u09b0\u09c1\u09a8 (' + now + '/' + count + ')';
+    hint.style.color = 'var(--orange)';
+  }
+}
+function switchScreen(name) {
+  try {
+    document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+    document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+    var scr = document.getElementById('screen-'+name);
+    if(scr) scr.classList.add('active');
+    var nav = document.getElementById('nav-'+name);
+    if(nav) nav.classList.add('active');
+    window.scrollTo(0,0);
+    if(name==='profile' && window._loadTransactions) window._loadTransactions();
+    if(name==='history' && window._loadMyRegs) window._loadMyRegs();
+    if(name==='results' && window._loadUserResults) window._loadUserResults();
+  } catch(e){ console.error('switchScreen error:',e.message); }
+}
+function setMatchTab(el){document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');if(window._loadMyRegs)window._loadMyRegs();}
+function switchPayTab(tab){document.getElementById('panel-deposit').style.display=tab==='deposit'?'block':'none';document.getElementById('panel-withdraw').style.display=tab==='withdraw'?'block':'none';document.getElementById('tab-deposit').className='tab-pill '+(tab==='deposit'?'tab-white':'tab-ghost');document.getElementById('tab-withdraw').className='tab-pill '+(tab==='withdraw'?'tab-white':'tab-ghost');}
+function adminTab(el,section){try{document.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});el.classList.add('active');var sec=document.getElementById(section);if(sec)sec.classList.add('active');if(section==='at-result'&&window._loadAdminResults)window._loadAdminResults();if(section==='at-players'&&window._loadAdminRegistrations)window._loadAdminRegistrations();if(section==='at-deposits'&&window._loadAdminDeposits)window._loadAdminDeposits();if(section==='at-balances'&&window._loadAdminBalances)window._loadAdminBalances();}catch(e){console.error('adminTab:',e.message);}}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
+</body>
+        </html>
