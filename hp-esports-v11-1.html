@@ -217,6 +217,67 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
 /* TOAST */
 .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#222;border:1px solid var(--orange-border);border-radius:10px;padding:10px 20px;font-size:.85rem;font-weight:600;color:var(--orange);z-index:9999;opacity:0;pointer-events:none;transition:opacity .3s;white-space:nowrap;max-width:90%}
 .toast.show{opacity:1}
+
+/* ── TEAMS ── */
+.team-action-row{display:flex;gap:10px;margin:0 16px 14px}
+.team-action-btn{flex:1;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;text-align:center;transition:all .2s}
+.team-action-btn:active{transform:scale(.97)}
+.team-filter-row{display:flex;margin:0 16px 14px;background:var(--card);border-radius:12px;padding:4px;gap:3px}
+.team-filter-btn{flex:1;padding:9px 4px;text-align:center;border-radius:9px;cursor:pointer;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);transition:all .2s}
+.team-filter-btn.active{background:#3b82f6;color:#fff}
+.squad-card{margin:0 16px 12px;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border)}
+.squad-head{padding:14px;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.02));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.squad-av{width:44px;height:44px;border-radius:12px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.squad-nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem}
+.squad-tg{font-size:.7rem;color:#3b82f6;font-weight:700;letter-spacing:.06em;margin-top:2px}
+.squad-ct{margin-left:auto;text-align:right}
+.squad-ct-n{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:#3b82f6;line-height:1}
+.squad-ct-l{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.squad-stats{display:flex;padding:12px 14px;border-bottom:1px solid var(--border)}
+.squad-stat{flex:1;text-align:center}
+.squad-stat-v{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;line-height:1}
+.squad-stat-l{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.squad-foot{display:flex;align-items:center;padding:10px 14px;gap:8px}
+.squad-pip{width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:var(--orange)}
+/* ── LEADERBOARD ── */
+.lb-hero{margin:16px;border-radius:20px;padding:24px 20px 18px;background:linear-gradient(135deg,#0a0014,#0e0e0e,#001400);border:1px solid rgba(168,85,247,.2);text-align:center}
+.lb-eyebrow{font-size:.6rem;color:rgba(168,85,247,.7);font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+.lb-title{font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(135deg,#a855f7,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lb-filter-row{display:flex;margin:0 16px 14px;gap:8px}
+.lb-filter-btn{flex:1;padding:10px 4px;border-radius:12px;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .2s;background:var(--card);color:var(--muted);border:1px solid var(--border)}
+.lb-filter-btn.active{background:rgba(168,85,247,.15);color:#a855f7;border-color:rgba(168,85,247,.4)}
+.lb-podium{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin:0 16px 16px;padding:16px;background:var(--card);border-radius:20px;border:1px solid var(--border)}
+.lb-pod{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1}
+.lb-pod-av{border-radius:14px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;border:2px solid var(--border)}
+.lb-pod.p1 .lb-pod-av{width:64px;height:64px;border-color:#f59e0b}
+.lb-pod.p2 .lb-pod-av,.lb-pod.p3 .lb-pod-av{width:52px;height:52px}
+.lb-pod.p2 .lb-pod-av{border-color:#94a3b8}
+.lb-pod.p3 .lb-pod-av{border-color:#b45309}
+.lb-pod-nm{font-size:.72rem;font-weight:700;text-align:center;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-pod-sc{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;color:var(--orange)}
+.lb-pod-rk{font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:20px}
+.rg{background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3)}
+.rs{background:rgba(148,163,184,.1);color:#94a3b8;border:1px solid rgba(148,163,184,.2)}
+.rb{background:rgba(180,83,9,.1);color:#b45309;border:1px solid rgba(180,83,9,.2)}
+.lb-row{margin:0 16px 8px;padding:14px;background:var(--card);border-radius:14px;border:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.lb-rank-n{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;color:var(--muted);width:24px;flex-shrink:0;text-align:center}
+.lb-row-av{width:38px;height:38px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--orange);flex-shrink:0}
+.lb-row-nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem}
+.lb-row-mt{font-size:.68rem;color:var(--muted);margin-top:2px}
+.lb-row-sc{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;color:var(--orange);margin-left:auto}
+/* ── PROFILE EXTRAS ── */
+.ps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:0 16px 14px}
+.ps-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 4px;text-align:center}
+.ps-val{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;line-height:1}
+.v-w{color:var(--orange)}.v-l{color:var(--red)}.v-wr{color:#22c55e}.v-ev{color:#3b82f6}.v-ac{color:#a855f7}
+.ps-lbl{font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:3px}
+.prof-sec{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.prof-sec-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border)}
+.prof-sec-title{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.prof-sec-act{font-size:.72rem;font-weight:700;color:var(--orange);cursor:pointer;background:none;border:none;padding:0}
+.prof-sec-body{padding:14px;font-size:.82rem;color:var(--muted)}
+.badge-chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:.75rem;font-weight:700;margin:3px}
+
 /* RESULT CARD */
 .result-card{margin:0 16px 14px;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border)}
 .result-card-head{padding:12px 14px;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(249,115,22,.03));border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
@@ -393,7 +454,48 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
     <div id="my-regs-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
   </div>
 
-  <!-- SCREEN: RESULTS -->
+  <!-- SCREEN: TEAMS -->
+  <div class="screen" id="screen-teams">
+    <div class="mh-hero" style="background:linear-gradient(135deg,#001020,#0e0e0e);border-color:rgba(59,130,246,.3)">
+      <div style="font-size:2.5rem;margin-bottom:8px">👥</div>
+      <div class="mh-title" style="color:#3b82f6">TEAMS &<br>SQUADS</div>
+      <div class="mh-sub" style="color:#3b82f6">Create &amp; Join Squads</div>
+    </div>
+    <div class="team-action-row">
+      <div class="team-action-btn" onclick="openCreateTeam()">
+        <div style="font-size:1.8rem">➕</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:800;color:var(--orange);letter-spacing:.04em;text-transform:uppercase">Create Team</div>
+        <div style="font-size:.7rem;color:var(--muted);margin-top:2px">Start your squad</div>
+      </div>
+      <div class="team-action-btn" onclick="openJoinTeam()">
+        <div style="font-size:1.8rem">🔑</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:800;color:var(--orange);letter-spacing:.04em;text-transform:uppercase">Join Team</div>
+        <div style="font-size:.7rem;color:var(--muted);margin-top:2px">Enter team ID</div>
+      </div>
+    </div>
+    <div class="team-filter-row">
+      <div class="team-filter-btn active" id="tf-all" onclick="setTeamFilter('all',this)">All Teams</div>
+      <div class="team-filter-btn" id="tf-my" onclick="setTeamFilter('my',this)">My Teams</div>
+    </div>
+    <div id="teams-list"><div class="loading-wrap"><div class="spinner"></div><span>Loading...</span></div></div>
+  </div>
+
+  <!-- SCREEN: LEADERBOARD -->
+  <div class="screen" id="screen-leaderboard">
+    <div class="lb-hero">
+      <div class="lb-eyebrow">// Hall of Fame</div>
+      <div class="lb-title">LEADERBOARD</div>
+    </div>
+    <div class="lb-filter-row">
+      <div class="lb-filter-btn active" onclick="setLbFilter('wins',this)">⚔️ Wins</div>
+      <div class="lb-filter-btn" onclick="setLbFilter('wr',this)">📊 Win Rate</div>
+      <div class="lb-filter-btn" onclick="setLbFilter('matches',this)">🏆 Events</div>
+    </div>
+    <div id="lb-podium-wrap"></div>
+    <div id="lb-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
+  </div>
+
+    <!-- SCREEN: RESULTS -->
   <div class="screen" id="screen-results">
     <div class="mh-hero">
       <div style="font-size:2.5rem;margin-bottom:8px">🏆</div>
@@ -437,15 +539,28 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
         <button class="white-btn" onclick="updateProfile()">Update Details</button>
       </div>
     </div>
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
-        <div><div class="stat-label">Wins</div><div class="stat-val" id="stat-wins">0</div></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="6" y="11" width="12" height="8" rx="2"/><path d="M2 17a2 2 0 0 0 2 2h1"/><path d="M22 17a2 2 0 0 1-2 2h-1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="9" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg></div>
-        <div><div class="stat-label">Matches</div><div class="stat-val" id="stat-matches">0</div></div>
-      </div>
+    <!-- 5-stat grid -->
+    <div class="ps-grid">
+      <div class="ps-box"><div class="ps-val v-w" id="ps-wins">0</div><div class="ps-lbl">WINS</div></div>
+      <div class="ps-box"><div class="ps-val v-l" id="ps-losses">0</div><div class="ps-lbl">LOSSES</div></div>
+      <div class="ps-box"><div class="ps-val v-wr" id="ps-wr">0%</div><div class="ps-lbl">WR</div></div>
+      <div class="ps-box"><div class="ps-val v-ev" id="ps-events">0</div><div class="ps-lbl">EVENTS</div></div>
+      <div class="ps-box"><div class="ps-val v-ac" id="ps-ac">0</div><div class="ps-lbl">AC</div></div>
+    </div>
+    <!-- Badges -->
+    <div class="prof-sec">
+      <div class="prof-sec-head"><div class="prof-sec-title">🥇 BADGES</div></div>
+      <div class="prof-sec-body" id="profile-badges">No badges yet — keep competing!</div>
+    </div>
+    <!-- Game Profiles -->
+    <div class="prof-sec">
+      <div class="prof-sec-head"><div class="prof-sec-title">🎮 GAME PROFILES</div><button class="prof-sec-act" onclick="addGameProfile()">+ Add</button></div>
+      <div class="prof-sec-body" id="profile-games">No game profiles linked yet</div>
+    </div>
+    <!-- My Teams -->
+    <div class="prof-sec">
+      <div class="prof-sec-head"><div class="prof-sec-title">👥 MY TEAMS</div><button class="prof-sec-act" onclick="switchScreen('teams')">View All</button></div>
+      <div class="prof-sec-body" id="profile-my-teams">No teams joined</div>
     </div>
     <div class="wallet-card">
       <div class="wallet-row">
@@ -495,7 +610,15 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
       <span class="nav-label">Tournaments</span>
     </div>
-    <div class="nav-item" id="nav-history" onclick="switchScreen('history')">
+    <div class="nav-item" id="nav-teams" onclick="switchScreen('teams')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="nav-label">Teams</span>
+    </div>
+    <div class="nav-item" id="nav-leaderboard" onclick="switchScreen('leaderboard')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="18" y="3" width="4" height="18"/><rect x="10" y="8" width="4" height="13"/><rect x="2" y="13" width="4" height="8"/></svg>
+      <span class="nav-label">Ranks</span>
+    </div>
+        <div class="nav-item" id="nav-history" onclick="switchScreen('history')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></svg>
       <span class="nav-label">History</span>
     </div>
@@ -521,6 +644,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
   <div class="admin-nav">
     <div class="admin-tab active" onclick="adminTab(this,'at-tournaments')">🏆 Tournaments</div>
     <div class="admin-tab" onclick="adminTab(this,'at-players')">👥 Players</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-teams')">⚔️ Teams</div>
     <div class="admin-tab" onclick="adminTab(this,'at-deposits')">💰 Deposits</div>
     <div class="admin-tab" onclick="adminTab(this,'at-balances')">📊 Balances</div>
     <div class="admin-tab" onclick="adminTab(this,'at-result')">🖼️ Result</div>
@@ -532,41 +656,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
       <div class="form-gap">
         <div><div class="label-sm">Tournament Name</div><input class="input-field" id="t-name" placeholder="e.g. Blaze Cup S6"></div>
         <div><div class="label-sm">Game Mode</div><select class="select-field" id="t-mode"><option value="solo">Solo (1 player)</option><option value="duo">Duo (2 players)</option><option value="squad">Squad (4 players)</option></select></div>
-        <div>
-          <div class="label-sm">কতটি Map এ খেলা হবে?</div>
-          <select class="select-field" id="t-map-count" onchange="updateMapCheckboxes()">
-            <option value="1">1 টি Map</option>
-            <option value="2">2 টি Map</option>
-            <option value="3">3 টি Map</option>
-            <option value="4">4 টি Map</option>
-            <option value="5">5 টি Map</option>
-            <option value="6">6 টি Map (সব)</option>
-          </select>
-        </div>
-        <div id="map-checkbox-wrap" style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px">
-          <div class="label-sm" style="margin-bottom:10px">Map(গুলো) select করুন</div>
-          <div id="map-checkboxes" style="display:flex;flex-direction:column;gap:8px">
-            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
-              <input type="checkbox" name="map-cb" value="Bermuda" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Bermuda</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
-              <input type="checkbox" name="map-cb" value="Kalahari" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Kalahari</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
-              <input type="checkbox" name="map-cb" value="Purgatory" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Purgatory</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
-              <input type="checkbox" name="map-cb" value="Alpine" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Alpine</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
-              <input type="checkbox" name="map-cb" value="Solara" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Solara</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)">
-              <input type="checkbox" name="map-cb" value="Nextera" onchange="onMapCheck(this)" style="accent-color:var(--orange);width:16px;height:16px"> <span style="font-weight:600;font-size:.9rem">Nextera</span>
-            </label>
-          </div>
-          <div id="map-count-hint" style="font-size:.72rem;color:var(--orange);margin-top:8px;font-weight:600">⚠️ ঠিক 1 টি map select করুন</div>
-        </div>
+        <div><div class="label-sm">Map</div><select class="select-field" id="t-map"><option>Bermuda</option><option>Purgatory</option><option>Kalahari</option><option>Alpine</option></select></div>
         <div style="display:flex;gap:10px">
           <div style="flex:1"><div class="label-sm">Date</div><input class="input-field" id="t-date" placeholder="25 May"></div>
           <div style="flex:1"><div class="label-sm">Time</div><input class="input-field" id="t-time" placeholder="8:00 PM"></div>
@@ -582,7 +672,29 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
     <div class="admin-card"><div class="admin-card-title">📋 All Tournaments</div><div id="admin-t-list"><div class="loading-wrap"><div class="spinner"></div></div></div></div>
   </div>
   <div class="admin-section" id="at-players">
-    <div class="admin-card"><div class="admin-card-title">👥 Registered Players</div><div id="admin-reg-list"><div class="loading-wrap"><div class="spinner"></div></div></div></div>
+    <div class="admin-card">
+      <div class="admin-card-title">🎯 Player Stats Control</div>
+      <div class="form-gap">
+        <div><div class="label-sm">Player Email খুঁজুন</div><input class="input-field" id="stat-player-email" placeholder="player@email.com" oninput="searchPlayerForStat(this.value)"></div>
+        <div id="stat-player-found" style="display:none;background:var(--bg3);border-radius:10px;padding:10px;font-size:.82rem;color:var(--text)"></div>
+        <div style="display:flex;gap:8px">
+          <div style="flex:1"><div class="label-sm">Wins</div><input class="input-field" id="stat-wins-val" type="number" placeholder="0"></div>
+          <div style="flex:1"><div class="label-sm">Losses</div><input class="input-field" id="stat-losses-val" type="number" placeholder="0"></div>
+          <div style="flex:1"><div class="label-sm">Events</div><input class="input-field" id="stat-events-val" type="number" placeholder="0"></div>
+        </div>
+        <div><div class="label-sm">Badges (comma দিয়ে আলাদা করুন)</div><input class="input-field" id="stat-badges-val" placeholder="🥇 Champion, 🔥 Hot Streak"></div>
+        <button class="orange-btn" onclick="savePlayerStats()">💾 Save Player Stats</button>
+      </div>
+    </div>
+        <div class="admin-card"><div class="admin-card-title">👥 Registered Players</div><div id="admin-reg-list"><div class="loading-wrap"><div class="spinner"></div></div></div></div>
+  </div>
+
+  <!-- ADMIN: TEAMS -->
+  <div class="admin-section" id="at-teams">
+    <div class="admin-card">
+      <div class="admin-card-title">⚔️ All Teams</div>
+      <div id="admin-teams-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
+    </div>
   </div>
   <div class="admin-section" id="at-deposits">
     <div class="admin-card"><div class="admin-card-title">💰 Pending Deposits</div><div id="admin-dep-list"><div class="loading-wrap"><div class="spinner"></div></div></div></div>
@@ -699,6 +811,8 @@ function showApp() {
   loadSettings();
   loadTransactions();
   loadUserResults();
+  loadTeams();
+  loadLeaderboard();
   if (isAdmin) {
     document.getElementById('admin-badge').style.display = 'inline-block';
   }
@@ -740,8 +854,7 @@ async function loadUserData(user) {
     document.getElementById('profile-uid').value = currentUserData.uid || '';
     document.getElementById('profile-ign').value = currentUserData.ign || '';
     document.getElementById('wallet-bal').textContent = (currentUserData.balance||0).toFixed(2);
-    document.getElementById('stat-wins').textContent = currentUserData.wins || 0;
-    document.getElementById('stat-matches').textContent = currentUserData.matches || 0;
+    if(window._loadProfileExtras) window._loadProfileExtras();
   } catch(e) { console.log(e); }
 }
 
@@ -846,17 +959,13 @@ function buildTCard(t) {
   const isFull = left <= 0;
   const modeLabel = t.mode==='solo'?'Solo':t.mode==='duo'?'Duo':'Squad';
   const slotColor = left<=5?'var(--red)':'var(--muted)';
-  // Multi-map display
-  const maps = t.maps || [t.map||'Bermuda'];
-  const mapBadges = maps.map(m=>`<span style="display:inline-block;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:5px;padding:2px 7px;font-size:.65rem;font-weight:700;color:var(--orange);margin:2px 2px 0 0">${m}</span>`).join('');
   return `<div class="t-card">
     <div class="t-card-head">
       <div><span class="${isFull?'badge-red':'badge-green'}">${isFull?'FULL':'OPEN'}</span> <span class="t-card-name">${t.name}</span></div>
       <div class="t-card-date">📅 ${t.date||''}</div>
     </div>
     <div class="t-card-body">
-      <div class="t-card-map">🗺️ ${modeLabel} · ⏰ ${t.time||''}</div>
-      <div style="margin-bottom:10px">${mapBadges}</div>
+      <div class="t-card-map">🗺️ ${modeLabel} · ${t.map||''} · ⏰ ${t.time||''}</div>
       <div class="t-meta-row">
         <div class="t-meta-item">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
@@ -1070,7 +1179,7 @@ window.handleAvatarClick = function() {
 }
 
 async function loadAdminData() {
-  loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults();
+  loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults(); loadAdminTeams();
 }
 
 async function loadAdminTournaments() {
@@ -1084,21 +1193,12 @@ async function loadAdminTournaments() {
 }
 
 window.addTournament = async function() {
-  const name=document.getElementById('t-name').value.trim(),mode=document.getElementById('t-mode').value,date=document.getElementById('t-date').value.trim(),time=document.getElementById('t-time').value.trim(),slots=parseInt(document.getElementById('t-slots').value),prize=parseInt(document.getElementById('t-prize').value)||0,fee=parseInt(document.getElementById('t-fee').value)||0;
-  // Multi-map selection
-  const mapCount = parseInt(document.getElementById('t-map-count').value)||1;
-  const checkedMaps = [...document.querySelectorAll('input[name="map-cb"]:checked')].map(cb=>cb.value);
+  const name=document.getElementById('t-name').value.trim(),mode=document.getElementById('t-mode').value,map=document.getElementById('t-map').value,date=document.getElementById('t-date').value.trim(),time=document.getElementById('t-time').value.trim(),slots=parseInt(document.getElementById('t-slots').value),prize=parseInt(document.getElementById('t-prize').value)||0,fee=parseInt(document.getElementById('t-fee').value)||0;
   if(!name||!date||!slots){showToast('Name, Date ও Slots দিন!');return;}
-  if(checkedMaps.length===0){showToast('কমপক্ষে ১টি map select করুন!');return;}
-  if(checkedMaps.length!==mapCount){showToast(`ঠিক ${mapCount} টি map select করুন! (এখন ${checkedMaps.length} টি)`);return;}
-  const mapDisplay = checkedMaps.join(' · ');
   try {
-    await addDoc(collection(db,'tournaments'),{name,mode,map:mapDisplay,maps:checkedMaps,mapCount,date,time,slots,prize,fee,registered:0,createdAt:serverTimestamp()});
+    await addDoc(collection(db,'tournaments'),{name,mode,map,date,time,slots,prize,fee,registered:0,createdAt:serverTimestamp()});
     showToast('✅ Tournament added!');
     ['t-name','t-date','t-time','t-slots','t-prize','t-fee'].forEach(id=>document.getElementById(id).value='');
-    document.querySelectorAll('input[name="map-cb"]').forEach(cb=>cb.checked=false);
-    document.getElementById('t-map-count').value='1';
-    updateMapCheckboxes();
     loadAdminTournaments(); loadTournaments();
   } catch(e) { showToast('Error: '+e.message); }
 }
@@ -1109,7 +1209,7 @@ window.deleteTournament = async function(id) {
   showToast('✅ Deleted!'); loadAdminTournaments(); loadTournaments();
 }
 
-window._loadAdminRegistrations = async function loadAdminRegistrations() {
+async function loadAdminRegistrations() {
   try {
     const snap=await getDocs(collection(db,'registrations'));
     const list=document.getElementById('admin-reg-list');
@@ -1160,7 +1260,7 @@ window.deleteReg = async function(id) {
   } catch(e) { showToast('Error removing!'); }
 }
 
-window._loadAdminDeposits = async function loadAdminDeposits() {
+async function loadAdminDeposits() {
   try {
     const snap=await getDocs(query(collection(db,'deposits'),where('status','==','pending')));
     const list=document.getElementById('admin-dep-list');
@@ -1188,7 +1288,7 @@ window.rejectDeposit = async function(id) {
   showToast('❌ Rejected!'); loadAdminDeposits();
 }
 
-window._loadAdminBalances = async function loadAdminBalances() {
+async function loadAdminBalances() {
   try {
     const snap=await getDocs(collection(db,'users'));
     const list=document.getElementById('admin-bal-list');
@@ -1236,191 +1336,65 @@ window.saveWA = async function() {
   showToast('✅ WhatsApp saved!');
 }
 
-window._loadTransactions = loadTransactions;
-window._loadMyRegs = loadMyRegistrations;
-window._loadAdminData = loadAdminData;
 
-// ── ADMIN: VIEW TOURNAMENT REGISTRATIONS ──
-window.viewTournamentRegs = async function(tId, tName) {
+// ── TEAMS ──
+let teamFilter = 'all';
+let lbFilter = 'wins';
+let statTargetUid = null;
+
+async function loadTeams() {
+  const list = document.getElementById('teams-list');
   try {
-    const snap = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',tId)));
-    const modal = document.createElement('div');
-    modal.className = 'detail-modal';
-    let rows = '';
-    if(snap.empty) {
-      rows = '<div style="text-align:center;color:var(--muted);padding:20px">কোনো registration নেই</div>';
-    } else {
-      let i=0;
-      snap.forEach(d=>{
-        i++;
-        const r=d.data();
-        let name='', members='';
-        if(r.mode==='solo'){name=r.p1||r.displayName||'Player';members='Solo player';}
-        else if(r.mode==='duo'){name=r.igl||r.displayName||'IGL';members=`IGL: ${r.igl||'-'} | 2nd: ${r.p2||'-'}`;}
-        else{name=r.teamName||r.igl||'Team';members=`IGL:${r.igl||'-'} | P2:${r.p2||'-'} | P3:${r.p3||'-'} | P4:${r.p4||'-'}`;}
-        rows+=`<div class="team-row"><div class="team-num">${i}</div><div class="team-info"><div class="team-name">${name}</div><div class="team-members">${members}</div><div class="team-members">UID: ${r.uid} · 📞 ${r.phone}</div></div><button onclick="deleteReg('${d.id}');this.closest('.detail-modal').remove()" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);border-radius:6px;padding:5px 8px;font-size:.65rem;font-weight:700;cursor:pointer;flex-shrink:0">Remove</button></div>`;
-      });
-    }
-    modal.innerHTML=`<div class="detail-box"><div class="detail-title">👥 ${tName} — Players (${snap.size})</div>${rows}<button onclick="this.closest('.detail-modal').remove()" style="width:100%;margin-top:16px;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">Close</button></div>`;
-    document.body.appendChild(modal);
-    modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
-  } catch(e){ showToast('Error: '+e.message); }
+    const snap = await getDocs(collection(db,'teams'));
+    if(snap.empty){list.innerHTML='<div class="empty-state"><div class="empty-icon">👥</div><div class="empty-text">কোনো team নেই<br>প্রথম team তৈরি করুন!</div></div>';return;}
+    const docs=[];snap.forEach(d=>docs.push({id:d.id,...d.data()}));
+    renderTeams(docs);
+  }catch(e){list.innerHTML='<div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-text">Load হয়নি</div></div>';}
 }
 
-// ── VIEW TOURNAMENT TEAMS (user side) ──
-window.viewTournamentTeams = async function(tId, tName) {
-  try {
-    const snap = await getDocs(query(collection(db,'registrations'), where('tournamentId','==',tId)));
-    const modal = document.createElement('div');
-    modal.className = 'teams-modal';
-    let rows = '';
-    if(snap.empty) {
-      rows = '<div style="text-align:center;color:var(--muted);padding:20px;font-size:.88rem">এখনো কেউ join করেনি</div>';
-    } else {
-      let i=0;
-      snap.forEach(d=>{
-        i++;
-        const r=d.data();
-        let name='', members='';
-        if(r.mode==='solo'){name=r.p1||r.displayName||'Player';members='Solo';}
-        else if(r.mode==='duo'){name=r.igl||r.displayName||'IGL';members=[r.igl,r.p2].filter(Boolean).join(' + ');}
-        else{name=r.teamName||r.igl||'Team';const ml=[r.igl,r.p2,r.p3,r.p4].filter(Boolean);members=ml.join(', ');}
-        rows+=`<div class="team-row"><div class="team-num">${i}</div><div class="team-info"><div class="team-name">${name}</div><div class="team-members">${members}</div></div><div style="font-size:.7rem;color:var(--muted)">${r.mode?.toUpperCase()}</div></div>`;
-      });
-    }
-    modal.innerHTML=`<div class="teams-box"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div style="font-family:Barlow Condensed,sans-serif;font-size:1.2rem;font-weight:900;text-transform:uppercase">👥 ${tName}</div><button onclick="this.closest('.teams-modal').remove()" style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;color:var(--muted);cursor:pointer;font-size:1.1rem">✕</button></div><div style="font-size:.72rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em">Joined Teams / Players</div>${rows}</div>`;
-    document.body.appendChild(modal);
-    modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
-  } catch(e){ showToast('Error loading teams!'); }
+function renderTeams(docs) {
+  const list=document.getElementById('teams-list');
+  let filtered=docs;
+  if(teamFilter==='my'&&currentUser) filtered=docs.filter(t=>(t.members||[]).includes(currentUser.uid));
+  if(filtered.length===0){list.innerHTML='<div class="empty-state"><div class="empty-icon">👥</div><div class="empty-text">'+(teamFilter==='my'?'কোনো team-এ join করোনি':'কোনো team নেই')+'</div></div>';return;}
+  list.innerHTML=filtered.map(t=>{
+    const members=t.members||[];
+    const pips=members.slice(0,4).map(()=>`<div class="squad-pip">👤</div>`).join('');
+    const w=t.wins||0,l=t.losses||0,ev=t.events||0,wr=(w+l)>0?Math.round(w/(w+l)*100):0;
+    const isMine=(t.members||[]).includes(currentUser?.uid);
+    return `<div class="squad-card"><div class="squad-head"><div class="squad-av">👥</div><div><div class="squad-nm">${t.name}</div><div class="squad-tg">[${t.tag||'???'}]</div></div><div class="squad-ct"><div class="squad-ct-n">${members.length}</div><div class="squad-ct-l">Members</div></div></div><div class="squad-stats"><div class="squad-stat"><div class="squad-stat-v" style="color:var(--orange)">${w}</div><div class="squad-stat-l">WINS</div></div><div class="squad-stat"><div class="squad-stat-v" style="color:var(--red)">${l}</div><div class="squad-stat-l">LOSSES</div></div><div class="squad-stat"><div class="squad-stat-v" style="color:#3b82f6">${ev}</div><div class="squad-stat-l">EVENTS</div></div><div class="squad-stat"><div class="squad-stat-v" style="color:#22c55e">${wr}%</div><div class="squad-stat-l">WR</div></div></div><div class="squad-foot">${pips}<button onclick="viewTeamDetail('${t.id}')" style="margin-left:auto;font-size:.72rem;font-weight:700;color:#3b82f6;cursor:pointer;background:none;border:none;padding:0">${isMine?'My Team ✓':'View →'}</button></div></div>`;
+  }).join('');
 }
 
-// ── RESULT IMAGE PREVIEW ──
-window.previewResultImg = function(input) {
-  const file = input.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    document.getElementById('res-img-preview').innerHTML = `<img src="${e.target.result}" style="max-height:120px;border-radius:8px;max-width:100%">`;
-  };
-  reader.readAsDataURL(file);
+window.setTeamFilter = function(f,el){teamFilter=f;document.querySelectorAll('.team-filter-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');loadTeams();}
+
+window.openCreateTeam = function() {
+  if(!currentUser){showToast('আগে login করুন!');return;}
+  const modal=document.createElement('div');modal.className='detail-modal';modal.style.display='flex';
+  modal.innerHTML=`<div class="detail-box"><div class="detail-title">Create Team</div><div class="form-gap"><div><div class="label-sm">Team Name</div><input class="input-field" id="ct-name" placeholder="Shadow Wolves"></div><div><div class="label-sm">Team Tag (3-5 letters)</div><input class="input-field" id="ct-tag" placeholder="SWLF" maxlength="5"></div></div><div style="display:flex;gap:8px;margin-top:16px"><button onclick="this.closest('.detail-modal').remove()" style="flex:1;padding:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border);border-radius:10px;font-weight:700;cursor:pointer">Cancel</button><button onclick="createTeam()" style="flex:1;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">⚡ Create</button></div></div>`;
+  document.body.appendChild(modal);modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
 }
 
-// ── UPLOAD RESULT (stores base64 image in Firestore) ──
-window.uploadResult = async function() {
-  const title = document.getElementById('res-title').value.trim();
-  const input = document.getElementById('res-img-input');
-  const file = input.files[0];
-  if(!title){ showToast('Title দিন!'); return; }
-  if(!file){ showToast('ছবি select করুন!'); return; }
-  if(file.size > 900000){ showToast('❌ ছবি 900KB-এর কম হতে হবে!'); return; }
-  const btn = document.querySelector('#at-result .orange-btn');
-  btn.disabled=true; btn.textContent='Uploading...';
-  try {
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const base64 = e.target.result;
-      await addDoc(collection(db,'results'),{title, imageBase64:base64, createdAt:serverTimestamp()});
-      showToast('✅ Result uploaded!');
-      document.getElementById('res-title').value='';
-      input.value='';
-      document.getElementById('res-img-preview').innerHTML='📷';
-      loadAdminResults();
-      loadUserResults();
-      btn.disabled=false; btn.textContent='📤 Upload Result';
-    };
-    reader.readAsDataURL(file);
-  } catch(e){ showToast('Error: '+e.message); btn.disabled=false; btn.textContent='📤 Upload Result'; }
+window.createTeam = async function() {
+  const name=document.getElementById('ct-name')?.value?.trim(),tag=(document.getElementById('ct-tag')?.value?.trim()||'').toUpperCase();
+  if(!name||!tag){showToast('Name ও Tag দিন!');return;}
+  try{
+    await addDoc(collection(db,'teams'),{name,tag,createdBy:currentUser.uid,members:[currentUser.uid],memberNames:[currentUser.displayName||'Player'],wins:0,losses:0,events:0,createdAt:serverTimestamp()});
+    document.querySelector('.detail-modal')?.remove();showToast('✅ Team created!');loadTeams();loadProfileTeams();
+  }catch(e){showToast('Error: '+e.message);}
 }
 
-// ── LOAD ADMIN RESULTS ──
-window._loadAdminResults = async function loadAdminResults() {
-  const list = document.getElementById('admin-result-list');
-  if(!list) return;
-  try {
-    const snap = await getDocs(query(collection(db,'results'), orderBy('createdAt','desc')));
-    if(snap.empty){ list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px">No results yet.</div>'; return; }
-    list.innerHTML='';
-    snap.forEach(d=>{
-      const r=d.data();
-      list.innerHTML+=`<div class="t-item"><div class="t-item-head"><div class="t-item-name">${r.title}</div><button class="delete-btn" onclick="deleteResult('${d.id}')">Delete</button></div><img src="${r.imageBase64}" style="width:100%;border-radius:8px;margin-top:8px;max-height:200px;object-fit:contain;background:#111"></div>`;
-    });
-  } catch(e){}
+window.openJoinTeam = function() {
+  if(!currentUser){showToast('আগে login করুন!');return;}
+  const modal=document.createElement('div');modal.className='detail-modal';modal.style.display='flex';
+  modal.innerHTML=`<div class="detail-box"><div class="detail-title">Join Team</div><div class="form-gap"><div><div class="label-sm">Team ID (Admin থেকে নিন)</div><input class="input-field" id="jt-id" placeholder="Team Document ID"></div></div><div style="display:flex;gap:8px;margin-top:16px"><button onclick="this.closest('.detail-modal').remove()" style="flex:1;padding:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border);border-radius:10px;font-weight:700;cursor:pointer">Cancel</button><button onclick="joinTeamById()" style="flex:1;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">🔑 Join</button></div></div>`;
+  document.body.appendChild(modal);modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
 }
 
-window.deleteResult = async function(id) {
-  if(!confirm('Delete করবেন?'))return;
-  await deleteDoc(doc(db,'results',id));
-  showToast('✅ Deleted!'); loadAdminResults(); loadUserResults();
-}
-
-// ── LOAD USER RESULTS ──
-window._loadUserResults = async function loadUserResults() {
-  const list = document.getElementById('user-result-list');
-  if(!list) return;
-  try {
-    const snap = await getDocs(query(collection(db,'results'), orderBy('createdAt','desc')));
-    if(snap.empty){ list.innerHTML='<div class="empty-state"><div class="empty-icon">🏆</div><div class="empty-text">এখনো কোনো result নেই</div></div>'; return; }
-    list.innerHTML='';
-    snap.forEach(d=>{
-      const r=d.data();
-      list.innerHTML+=`<div class="result-card"><div class="result-card-head"><div class="result-card-title">🏆 ${r.title}</div><span class="badge-orange">OFFICIAL</span></div><img src="${r.imageBase64}" loading="lazy" alt="${r.title}"></div>`;
-    });
-  } catch(e){ list.innerHTML='<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-text">Load হয়নি</div></div>'; }
-}
-</script>
-
-<script>
-function updateMapCheckboxes() {
-  const count = parseInt(document.getElementById('t-map-count').value)||1;
-  const hint = document.getElementById('map-count-hint');
-  const cbs = document.querySelectorAll('input[name="map-cb"]');
-  if(count === 6) {
-    cbs.forEach(cb => cb.checked = true);
-    hint.textContent = '\u2705 \u09b8\u09ac 6\u099f\u09bf map selected!';
-    hint.style.color = 'var(--green)';
-  } else {
-    cbs.forEach(cb => cb.checked = false);
-    hint.textContent = '\u26a0\ufe0f \u09a8\u09bf\u099a \u09a5\u09c7\u0995\u09c7 \u09af\u09c7\u0995\u09cb\u09a8\u09cb ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09c1\u09a8';
-    hint.style.color = 'var(--orange)';
-  }
-}
-
-function onMapCheck(cb) {
-  const count = parseInt(document.getElementById('t-map-count').value)||1;
-  const hint = document.getElementById('map-count-hint');
-  const checked = document.querySelectorAll('input[name="map-cb"]:checked');
-  if(checked.length > count) {
-    cb.checked = false;
-    showToast('\u09b8\u09b0\u09cd\u09ac\u09cb\u099a\u09cd\u099a ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09be \u09af\u09be\u09ac\u09c7!');
-    return;
-  }
-  const now = document.querySelectorAll('input[name="map-cb"]:checked').length;
-  if(now === count) {
-    hint.textContent = '\u2705 ' + count + ' \u099f\u09bf map selected!';
-    hint.style.color = 'var(--green)';
-  } else {
-    hint.textContent = '\u26a0\ufe0f \u0986\u09b0\u09cb ' + (count-now) + ' \u099f\u09bf select \u0995\u09b0\u09c1\u09a8 (' + now + '/' + count + ')';
-    hint.style.color = 'var(--orange)';
-  }
-}
-function switchScreen(name) {
-  try {
-    document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-    document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-    var scr = document.getElementById('screen-'+name);
-    if(scr) scr.classList.add('active');
-    var nav = document.getElementById('nav-'+name);
-    if(nav) nav.classList.add('active');
-    window.scrollTo(0,0);
-    if(name==='profile' && window._loadTransactions) window._loadTransactions();
-    if(name==='history' && window._loadMyRegs) window._loadMyRegs();
-    if(name==='results' && window._loadUserResults) window._loadUserResults();
-  } catch(e){ console.error('switchScreen error:',e.message); }
-}
-function setMatchTab(el){document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');if(window._loadMyRegs)window._loadMyRegs();}
-function switchPayTab(tab){document.getElementById('panel-deposit').style.display=tab==='deposit'?'block':'none';document.getElementById('panel-withdraw').style.display=tab==='withdraw'?'block':'none';document.getElementById('tab-deposit').className='tab-pill '+(tab==='deposit'?'tab-white':'tab-ghost');document.getElementById('tab-withdraw').className='tab-pill '+(tab==='withdraw'?'tab-white':'tab-ghost');}
-function adminTab(el,section){try{document.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});el.classList.add('active');var sec=document.getElementById(section);if(sec)sec.classList.add('active');if(section==='at-result'&&window._loadAdminResults)window._loadAdminResults();if(section==='at-players'&&window._loadAdminRegistrations)window._loadAdminRegistrations();if(section==='at-deposits'&&window._loadAdminDeposits)window._loadAdminDeposits();if(section==='at-balances'&&window._loadAdminBalances)window._loadAdminBalances();}catch(e){console.error('adminTab:',e.message);}}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2800);}
-</script>
-</body>
-  </html>
+window.joinTeamById = async function() {
+  const tid=document.getElementById('jt-id')?.value?.trim();if(!tid){showToast('Team ID দিন!');return;}
+  try{
+    const snap=await getDoc(doc(db,'teams',tid));if(!snap.exists()){showToast('❌ Team পাওয়া যায়নি!');return;}
+    const t=snap.data();if((t.members||[]).includes(currentUser.uid)){showToast('⚠️ Already in this team!');return;}
+    await updateDoc(doc(db,'teams',tid),{members:[...(t.members||[]),currentUser.uid],memberNames:[...(t.memberNames||[]),(currentUser.displayName||'Player')]});
+    document.querySelector('.detail-modal')?.remove();showToast('✅ Team join
