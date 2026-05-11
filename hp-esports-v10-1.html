@@ -232,11 +232,6 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
 .team-name{font-weight:700;font-size:.9rem;font-family:'Barlow Condensed',sans-serif}
 .team-members{font-size:.72rem;color:var(--muted);margin-top:2px}
 
-
-.badge-owner{display:inline-block;background:rgba(249,115,22,.2);border:1px solid var(--orange);border-radius:6px;padding:3px 10px;font-size:.65rem;font-weight:800;color:var(--orange);letter-spacing:.08em}
-.badge-admin{display:inline-block;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35);border-radius:6px;padding:3px 10px;font-size:.65rem;font-weight:800;color:#ef4444;letter-spacing:.08em}
-.badge-mod{display:inline-block;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);border-radius:6px;padding:3px 10px;font-size:.65rem;font-weight:800;color:#3b82f6;letter-spacing:.08em}
-
 /* LOADING SCREEN */
 .splash{position:fixed;inset:0;background:var(--bg);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 .splash-logo{font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;color:var(--orange);letter-spacing:.04em}
@@ -525,12 +520,11 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
   </div>
   <div class="admin-nav">
     <div class="admin-tab active" onclick="adminTab(this,'at-tournaments')">🏆 Tournaments</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-players')">👥 Players</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-deposits')">💰 Deposits</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-balances')">📊 Balances</div>
     <div class="admin-tab" onclick="adminTab(this,'at-result')">🖼️ Result</div>
-    <div class="admin-tab admin-owner-only" style="display:none" onclick="adminTab(this,'at-players')">👥 Players</div>
-    <div class="admin-tab admin-owner-only" style="display:none" onclick="adminTab(this,'at-deposits')">💰 Deposits</div>
-    <div class="admin-tab admin-owner-only" style="display:none" onclick="adminTab(this,'at-balances')">📊 Balances</div>
-    <div class="admin-tab admin-owner-only" style="display:none" onclick="adminTab(this,'at-promote')">⭐ Promote</div>
-    <div class="admin-tab admin-owner-only" style="display:none" onclick="adminTab(this,'at-settings')">⚙️ Settings</div>
+    <div class="admin-tab" onclick="adminTab(this,'at-settings')">⚙️ Settings</div>
   </div>
   <div class="admin-section active" id="at-tournaments">
     <div class="admin-card">
@@ -627,28 +621,6 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);max-
       <div id="admin-result-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
     </div>
   </div>
-  <div class="admin-section" id="at-promote">
-    <div class="admin-card">
-      <div class="admin-card-title">⭐ Player Promote করুন</div>
-      <div style="font-size:.8rem;color:var(--muted);margin-bottom:12px">Player কে Admin বা Moderator করুন। শুধু Owner পারবে।</div>
-      <div class="form-gap">
-        <div><div class="label-sm">Player Email</div><input class="input-field" id="promote-email" placeholder="player@email.com"></div>
-        <div><div class="label-sm">Role</div>
-          <select class="select-field" id="promote-role">
-            <option value="player">Player</option>
-            <option value="moderator">Moderator</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-        <button class="orange-btn" onclick="promotePlayer()">⭐ Role দিন</button>
-      </div>
-    </div>
-    <div class="admin-card">
-      <div class="admin-card-title">👥 All Users</div>
-      <div id="promote-users-list"><div class="loading-wrap"><div class="spinner"></div></div></div>
-    </div>
-  </div>
-
   <div class="admin-section" id="at-settings">
     <div class="admin-card">
       <div class="admin-card-title">⚙️ Payment Numbers</div>
@@ -697,28 +669,6 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 const ADMIN_EMAIL = 'kingshadinop44@gmail.com';
-const OWNER_EMAIL = 'kingshadinop44@gmail.com';
-let userRole = 'player';
-
-// showToast defined here so module can use it
-window.showToast = function(msg) {
-  const t = document.getElementById('toast');
-  if(!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(window._tt);
-  window._tt = setTimeout(() => t.classList.remove('show'), 2800);
-}
-function showToast(msg) { window.showToast(msg); }
-
-// Safety: never stuck on splash
-setTimeout(() => {
-  const s = document.getElementById('splash');
-  if (s && s.style.display !== 'none') {
-    s.style.display = 'none';
-    window.showPage('login');
-  }
-}, 6000);
 let currentUser = null;
 let currentUserData = {};
 let paymentSettings = {};
@@ -730,20 +680,13 @@ onAuthStateChanged(auth, async (user) => {
   document.getElementById('splash').style.display = 'none';
   if (user) {
     currentUser = user;
+    isAdmin = user.email === ADMIN_EMAIL;
     await loadUserData(user);
-    if (user.email === OWNER_EMAIL) {
-      userRole = 'owner'; isAdmin = true;
-    } else {
-      try {
-        const rSnap = await getDoc(doc(db,'roles',user.uid));
-        userRole = rSnap.exists() ? (rSnap.data().role||'player') : 'player';
-        isAdmin = (userRole==='admin'||userRole==='moderator');
-      } catch(e) { userRole='player'; isAdmin=false; }
-    }
     showApp();
   } else {
-    currentUser=null; isAdmin=false; userRole='player';
-    window.showPage('login');
+    currentUser = null;
+    isAdmin = false;
+    showPage('login');
   }
 });
 
@@ -756,17 +699,8 @@ function showApp() {
   loadSettings();
   loadTransactions();
   loadUserResults();
-  // Role badge
-  const ab = document.getElementById('admin-badge');
-  if(ab) {
-    if(userRole==='owner'){ ab.style.display='inline-block'; ab.textContent='👑 OWNER'; ab.className='badge-owner'; }
-    else if(userRole==='admin'){ ab.style.display='inline-block'; ab.textContent='⚡ ADMIN'; ab.className='badge-admin'; }
-    else if(userRole==='moderator'){ ab.style.display='inline-block'; ab.textContent='🛡️ MOD'; ab.className='badge-mod'; }
-    else ab.style.display='none';
-  }
-  // Owner tabs in admin panel
-  if(userRole==='owner') {
-    document.querySelectorAll('.admin-owner-only').forEach(el=>el.style.removeProperty('display'));
+  if (isAdmin) {
+    document.getElementById('admin-badge').style.display = 'inline-block';
   }
 }
 
@@ -890,7 +824,7 @@ window.doLogout = async function() {
 }
 
 // ── TOURNAMENTS ──
-window.loadTournaments = async function loadTournaments() {
+async function loadTournaments() {
   try {
     const snap = await getDocs(query(collection(db,'tournaments'), orderBy('createdAt','desc')));
     const list = document.getElementById('tournaments-list');
@@ -1022,7 +956,7 @@ window.submitJoin = async function() {
 }
 
 // ── SETTINGS ──
-window.loadSettings = async function loadSettings() {
+async function loadSettings() {
   try {
     const snap = await getDoc(doc(db,'settings','main'));
     if (!snap.exists()) return;
@@ -1070,7 +1004,7 @@ window.submitWithdraw = async function() {
 }
 
 // ── TRANSACTIONS ──
-window.loadTransactions = async function loadTransactions() {
+async function loadTransactions() {
   if (!currentUser) return;
   try {
     const snap = await getDocs(query(collection(db,'deposits'),where('playerUid','==',currentUser.uid)));
@@ -1127,23 +1061,19 @@ window.openWhatsApp = function() { window.open(`https://wa.me/${paymentSettings.
 
 // ── ADMIN ──
 window.handleAvatarClick = function() {
-  if (userRole==='owner' || userRole==='admin') {
-    document.getElementById('admin-panel').classList.add('active');
-    loadAdminData();
-  } else if (userRole==='moderator') {
-    // Moderator: show limited admin (no deposits/balances/settings/promote)
+  if (isAdmin) {
     document.getElementById('admin-panel').classList.add('active');
     loadAdminData();
   } else {
-    switchScreen('profile');
+    showToast('Admin access নেই!');
   }
 }
 
-window.loadAdminData = async function loadAdminData() {
+async function loadAdminData() {
   loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults();
 }
 
-window.loadAdminTournaments = async function loadAdminTournaments() {
+async function loadAdminTournaments() {
   try {
     const snap=await getDocs(query(collection(db,'tournaments'),orderBy('createdAt','desc')));
     const list=document.getElementById('admin-t-list');
@@ -1179,7 +1109,7 @@ window.deleteTournament = async function(id) {
   showToast('✅ Deleted!'); loadAdminTournaments(); loadTournaments();
 }
 
-window.loadAdminRegistrations = async function loadAdminRegistrations() {
+window._loadAdminRegistrations = async function loadAdminRegistrations() {
   try {
     const snap=await getDocs(collection(db,'registrations'));
     const list=document.getElementById('admin-reg-list');
@@ -1230,7 +1160,7 @@ window.deleteReg = async function(id) {
   } catch(e) { showToast('Error removing!'); }
 }
 
-window.loadAdminDeposits = async function loadAdminDeposits() {
+window._loadAdminDeposits = async function loadAdminDeposits() {
   try {
     const snap=await getDocs(query(collection(db,'deposits'),where('status','==','pending')));
     const list=document.getElementById('admin-dep-list');
@@ -1258,7 +1188,7 @@ window.rejectDeposit = async function(id) {
   showToast('❌ Rejected!'); loadAdminDeposits();
 }
 
-window.loadAdminBalances = async function loadAdminBalances() {
+window._loadAdminBalances = async function loadAdminBalances() {
   try {
     const snap=await getDocs(collection(db,'users'));
     const list=document.getElementById('admin-bal-list');
@@ -1403,7 +1333,7 @@ window.uploadResult = async function() {
 }
 
 // ── LOAD ADMIN RESULTS ──
-window.loadAdminResults = async function loadAdminResults() {
+window._loadAdminResults = async function loadAdminResults() {
   const list = document.getElementById('admin-result-list');
   if(!list) return;
   try {
@@ -1424,7 +1354,7 @@ window.deleteResult = async function(id) {
 }
 
 // ── LOAD USER RESULTS ──
-window.loadUserResults = async function loadUserResults() {
+window._loadUserResults = async function loadUserResults() {
   const list = document.getElementById('user-result-list');
   if(!list) return;
   try {
@@ -1437,38 +1367,60 @@ window.loadUserResults = async function loadUserResults() {
     });
   } catch(e){ list.innerHTML='<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-text">Load হয়নি</div></div>'; }
 }
+</script>
 
-// ── PROMOTE PLAYER (Owner only) ──
-window.promotePlayer = async function() {
-  if(userRole !== 'owner'){ showToast('Owner only!'); return; }
-  const email = document.getElementById('promote-email').value.trim();
-  const role = document.getElementById('promote-role').value;
-  if(!email){ showToast('Email দিন!'); return; }
-  try {
-    const snap = await getDocs(query(collection(db,'users'), where('email','==',email)));
-    if(snap.empty){ showToast('❌ User পাওয়া যায়নি!'); return; }
-    const uid = snap.docs[0].id;
-    await setDoc(doc(db,'roles',uid), {role, email, updatedAt:serverTimestamp()});
-    showToast('✅ ' + email + ' → ' + role);
-    loadPromoteUsers();
-    document.getElementById('promote-email').value='';
-  } catch(e){ showToast('Error: '+e.message); }
+<script>
+function updateMapCheckboxes() {
+  const count = parseInt(document.getElementById('t-map-count').value)||1;
+  const hint = document.getElementById('map-count-hint');
+  const cbs = document.querySelectorAll('input[name="map-cb"]');
+  if(count === 6) {
+    cbs.forEach(cb => cb.checked = true);
+    hint.textContent = '\u2705 \u09b8\u09ac 6\u099f\u09bf map selected!';
+    hint.style.color = 'var(--green)';
+  } else {
+    cbs.forEach(cb => cb.checked = false);
+    hint.textContent = '\u26a0\ufe0f \u09a8\u09bf\u099a \u09a5\u09c7\u0995\u09c7 \u09af\u09c7\u0995\u09cb\u09a8\u09cb ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09c1\u09a8';
+    hint.style.color = 'var(--orange)';
+  }
 }
 
-window.loadPromoteUsers = async function loadPromoteUsers() {
-  const list = document.getElementById('promote-users-list');
-  if(!list) return;
-  list.innerHTML='<div class="loading-wrap"><div class="spinner"></div></div>';
+function onMapCheck(cb) {
+  const count = parseInt(document.getElementById('t-map-count').value)||1;
+  const hint = document.getElementById('map-count-hint');
+  const checked = document.querySelectorAll('input[name="map-cb"]:checked');
+  if(checked.length > count) {
+    cb.checked = false;
+    showToast('\u09b8\u09b0\u09cd\u09ac\u09cb\u099a\u09cd\u099a ' + count + ' \u099f\u09bf map select \u0995\u09b0\u09be \u09af\u09be\u09ac\u09c7!');
+    return;
+  }
+  const now = document.querySelectorAll('input[name="map-cb"]:checked').length;
+  if(now === count) {
+    hint.textContent = '\u2705 ' + count + ' \u099f\u09bf map selected!';
+    hint.style.color = 'var(--green)';
+  } else {
+    hint.textContent = '\u26a0\ufe0f \u0986\u09b0\u09cb ' + (count-now) + ' \u099f\u09bf select \u0995\u09b0\u09c1\u09a8 (' + now + '/' + count + ')';
+    hint.style.color = 'var(--orange)';
+  }
+}
+function switchScreen(name) {
   try {
-    const snap = await getDocs(collection(db,'users'));
-    if(snap.empty){ list.innerHTML='<div style="color:var(--muted);font-size:.85rem;padding:8px">No users.</div>'; return; }
-    list.innerHTML='';
-    for(const d of snap.docs){
-      const u=d.data();
-      let role='player';
-      if(u.email===OWNER_EMAIL) role='owner';
-      else { try{ const r=await getDoc(doc(db,'roles',d.id)); if(r.exists()) role=r.data().role||'player'; }catch(e){} }
-      const bClass=role==='owner'?'badge-owner':role==='admin'?'badge-admin':role==='moderator'?'badge-mod':'player-badge';
-      list.innerHTML+=`<div class="reg-item"><div class="reg-head"><div><div class="reg-name">${u.displayName||'Player'}</div><div class="reg-meta">${u.email||''}</div></div><span class="${bClass}">${role.toUpperCase()}</span></div></div>`;
-    }
-  } catch(e){ list.innerHTML='<div style="color:var(--muted);font-size:.85rem
+    document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+    document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+    var scr = document.getElementById('screen-'+name);
+    if(scr) scr.classList.add('active');
+    var nav = document.getElementById('nav-'+name);
+    if(nav) nav.classList.add('active');
+    window.scrollTo(0,0);
+    if(name==='profile' && window._loadTransactions) window._loadTransactions();
+    if(name==='history' && window._loadMyRegs) window._loadMyRegs();
+    if(name==='results' && window._loadUserResults) window._loadUserResults();
+  } catch(e){ console.error('switchScreen error:',e.message); }
+}
+function setMatchTab(el){document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');if(window._loadMyRegs)window._loadMyRegs();}
+function switchPayTab(tab){document.getElementById('panel-deposit').style.display=tab==='deposit'?'block':'none';document.getElementById('panel-withdraw').style.display=tab==='withdraw'?'block':'none';document.getElementById('tab-deposit').className='tab-pill '+(tab==='deposit'?'tab-white':'tab-ghost');document.getElementById('tab-withdraw').className='tab-pill '+(tab==='withdraw'?'tab-white':'tab-ghost');}
+function adminTab(el,section){try{document.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});el.classList.add('active');var sec=document.getElementById(section);if(sec)sec.classList.add('active');if(section==='at-result'&&window._loadAdminResults)window._loadAdminResults();if(section==='at-players'&&window._loadAdminRegistrations)window._loadAdminRegistrations();if(section==='at-deposits'&&window._loadAdminDeposits)window._loadAdminDeposits();if(section==='at-balances'&&window._loadAdminBalances)window._loadAdminBalances();}catch(e){console.error('adminTab:',e.message);}}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
+</body>
+  </html>
