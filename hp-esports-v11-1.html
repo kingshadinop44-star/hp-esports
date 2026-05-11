@@ -788,6 +788,20 @@ let joinTournamentData = null;
 let isAdmin = false;
 
 // ── AUTH STATE LISTENER ──
+window.showPage = function(page) {
+  document.getElementById('page-login').style.display = page==='login' ? 'flex' : 'none';
+  document.getElementById('page-signup').style.display = page==='signup' ? 'flex' : 'none';
+  document.getElementById('app-wrap').classList.remove('active');
+}
+function showPage(p){ window.showPage(p); }
+
+
+// Safety timeout
+setTimeout(function(){
+  var s=document.getElementById('splash');
+  if(s&&s.style.display!=='none'){s.style.display='none';window.showPage('login');}
+},6000);
+
 onAuthStateChanged(auth, async (user) => {
   document.getElementById('splash').style.display = 'none';
   if (user) {
@@ -859,11 +873,7 @@ async function loadUserData(user) {
 }
 
 // ── AUTH FUNCTIONS ──
-window.showPage = function(page) {
-  document.getElementById('page-login').style.display = page==='login' ? 'flex' : 'none';
-  document.getElementById('page-signup').style.display = page==='signup' ? 'flex' : 'none';
-  document.getElementById('app-wrap').classList.remove('active');
-}
+
 
 window.doLogin = async function() {
   const email = document.getElementById('login-email').value.trim();
@@ -1057,10 +1067,7 @@ window.submitJoin = async function() {
       await updateDoc(doc(db,'users',currentUser.uid), {matches:increment(1)}).catch(()=>{});
     }
     currentUserData.matches = (currentUserData.matches||0)+1;
-    const statMatch = document.getElementById('stat-matches');
-if(statMatch){
-  statMatch.textContent = currentUserData.matches;
-}
+    const statMatch = document.getElementById('stat-matches'); if(statMatch){ statMatch.textContent = currentUserData.matches; }
     document.getElementById('join-modal').style.display='none';
     loadTournaments();
     showToast('✅ Registration সফল!');
@@ -1398,5 +1405,4 @@ window.joinTeamById = async function() {
   const tid=document.getElementById('jt-id')?.value?.trim();if(!tid){showToast('Team ID দিন!');return;}
   try{
     const snap=await getDoc(doc(db,'teams',tid));if(!snap.exists()){showToast('❌ Team পাওয়া যায়নি!');return;}
-    const t=snap.data();if((t.members||[]).includes(currentUser.uid)){showToast('⚠️ Already in this team!');return;}
-    await updateDoc(doc(db,'teams',tid),{members:[...(t.members||[]),currentUser.uid],memberNames:[...(t.memberNames||[]),(currentUser.displayName||'Player'
+    const t=snap.data();if((t.members||[]).include
