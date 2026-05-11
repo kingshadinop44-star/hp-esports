@@ -1179,7 +1179,7 @@ window.handleAvatarClick = function() {
 }
 
 async function loadAdminData() {
-  loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults(); loadAdminTeams();
+  loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults(); if(window._loadAdminTeams) window._loadAdminTeams();
 }
 
 async function loadAdminTournaments() {
@@ -1397,4 +1397,4 @@ window.joinTeamById = async function() {
     const snap=await getDoc(doc(db,'teams',tid));if(!snap.exists()){showToast('❌ Team পাওয়া যায়নি!');return;}
     const t=snap.data();if((t.members||[]).includes(currentUser.uid)){showToast('⚠️ Already in this team!');return;}
     await updateDoc(doc(db,'teams',tid),{members:[...(t.members||[]),currentUser.uid],memberNames:[...(t.memberNames||[]),(currentUser.displayName||'Player')]});
-    document.querySelector('.detail-modal')?.remove();showToast('✅ Team join
+    document.querySelector('.detail-modal'
