@@ -890,7 +890,7 @@ window.doLogout = async function() {
 }
 
 // ── TOURNAMENTS ──
-async function loadTournaments() {
+window.loadTournaments = async function loadTournaments() {
   try {
     const snap = await getDocs(query(collection(db,'tournaments'), orderBy('createdAt','desc')));
     const list = document.getElementById('tournaments-list');
@@ -1022,7 +1022,7 @@ window.submitJoin = async function() {
 }
 
 // ── SETTINGS ──
-async function loadSettings() {
+window.loadSettings = async function loadSettings() {
   try {
     const snap = await getDoc(doc(db,'settings','main'));
     if (!snap.exists()) return;
@@ -1070,7 +1070,7 @@ window.submitWithdraw = async function() {
 }
 
 // ── TRANSACTIONS ──
-async function loadTransactions() {
+window.loadTransactions = async function loadTransactions() {
   if (!currentUser) return;
   try {
     const snap = await getDocs(query(collection(db,'deposits'),where('playerUid','==',currentUser.uid)));
@@ -1139,11 +1139,11 @@ window.handleAvatarClick = function() {
   }
 }
 
-async function loadAdminData() {
+window.loadAdminData = async function loadAdminData() {
   loadAdminTournaments(); loadAdminRegistrations(); loadAdminDeposits(); loadAdminBalances(); loadSettings(); loadAdminResults();
 }
 
-async function loadAdminTournaments() {
+window.loadAdminTournaments = async function loadAdminTournaments() {
   try {
     const snap=await getDocs(query(collection(db,'tournaments'),orderBy('createdAt','desc')));
     const list=document.getElementById('admin-t-list');
@@ -1179,7 +1179,7 @@ window.deleteTournament = async function(id) {
   showToast('✅ Deleted!'); loadAdminTournaments(); loadTournaments();
 }
 
-async function loadAdminRegistrations() {
+window.loadAdminRegistrations = async function loadAdminRegistrations() {
   try {
     const snap=await getDocs(collection(db,'registrations'));
     const list=document.getElementById('admin-reg-list');
@@ -1230,7 +1230,7 @@ window.deleteReg = async function(id) {
   } catch(e) { showToast('Error removing!'); }
 }
 
-async function loadAdminDeposits() {
+window.loadAdminDeposits = async function loadAdminDeposits() {
   try {
     const snap=await getDocs(query(collection(db,'deposits'),where('status','==','pending')));
     const list=document.getElementById('admin-dep-list');
@@ -1258,7 +1258,7 @@ window.rejectDeposit = async function(id) {
   showToast('❌ Rejected!'); loadAdminDeposits();
 }
 
-async function loadAdminBalances() {
+window.loadAdminBalances = async function loadAdminBalances() {
   try {
     const snap=await getDocs(collection(db,'users'));
     const list=document.getElementById('admin-bal-list');
@@ -1403,7 +1403,7 @@ window.uploadResult = async function() {
 }
 
 // ── LOAD ADMIN RESULTS ──
-async function loadAdminResults() {
+window.loadAdminResults = async function loadAdminResults() {
   const list = document.getElementById('admin-result-list');
   if(!list) return;
   try {
@@ -1424,7 +1424,7 @@ window.deleteResult = async function(id) {
 }
 
 // ── LOAD USER RESULTS ──
-async function loadUserResults() {
+window.loadUserResults = async function loadUserResults() {
   const list = document.getElementById('user-result-list');
   if(!list) return;
   try {
@@ -1455,7 +1455,7 @@ window.promotePlayer = async function() {
   } catch(e){ showToast('Error: '+e.message); }
 }
 
-async function loadPromoteUsers() {
+window.loadPromoteUsers = async function loadPromoteUsers() {
   const list = document.getElementById('promote-users-list');
   if(!list) return;
   list.innerHTML='<div class="loading-wrap"><div class="spinner"></div></div>';
@@ -1471,14 +1471,4 @@ async function loadPromoteUsers() {
       const bClass=role==='owner'?'badge-owner':role==='admin'?'badge-admin':role==='moderator'?'badge-mod':'player-badge';
       list.innerHTML+=`<div class="reg-item"><div class="reg-head"><div><div class="reg-name">${u.displayName||'Player'}</div><div class="reg-meta">${u.email||''}</div></div><span class="${bClass}">${role.toUpperCase()}</span></div></div>`;
     }
-  } catch(e){ list.innerHTML='<div style="color:var(--muted);font-size:.85rem">Error</div>'; }
-}
-
-</script>
-
-<script>
-function updateMapCheckboxes() {
-  const count = parseInt(document.getElementById('t-map-count').value)||1;
-  const hint = document.getElementById('map-count-hint');
-  const cbs = document.querySelectorAll('input[name="map-cb"]');
-  if(count === 6)
+  } catch(e){ list.innerHTML='<div style="color:var(--muted);font-size:.85rem
