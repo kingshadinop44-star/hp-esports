@@ -781,23 +781,6 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 const ADMIN_EMAIL = 'kingshadinop44@gmail.com';
-
-// showPage defined here so onAuthStateChanged can call it
-function showPage(page) {
-  document.getElementById('page-login').style.display = page==='login' ? 'flex' : 'none';
-  document.getElementById('page-signup').style.display = page==='signup' ? 'flex' : 'none';
-  document.getElementById('app-wrap').classList.remove('active');
-}
-window.showPage = showPage;
-
-// Safety: splash never stuck
-setTimeout(function(){
-  var s = document.getElementById('splash');
-  if(s && s.style.display !== 'none'){
-    s.style.display = 'none';
-    showPage('login');
-  }
-}, 5000);
 let currentUser = null;
 let currentUserData = {};
 let paymentSettings = {};
@@ -1196,7 +1179,7 @@ window.handleAvatarClick = function() {
 }
 
 async function loadAdminData() {
-  loadAdminTournaments(); loadAdminRegistrations(); if(window._loadAdminDeposits)window._loadAdminDeposits(); if(window._loadAdminBalances)window._loadAdminBalances(); loadSettings(); if(window._loadAdminResults)window._loadAdminResults(); if(window._loadAdminTeams) window._loadAdminTeams();
+  loadAdminTournaments(); if(window._loadAdminRegistrations)window._loadAdminRegistrations(); if(window._loadAdminDeposits)window._loadAdminDeposits(); if(window._loadAdminBalances)window._loadAdminBalances(); loadSettings(); if(window._loadAdminResults)window._loadAdminResults(); if(window._loadAdminTeams) window._loadAdminTeams();
 }
 
 async function loadAdminTournaments() {
@@ -1404,4 +1387,13 @@ window.createTeam = async function() {
 window.openJoinTeam = function() {
   if(!currentUser){showToast('আগে login করুন!');return;}
   const modal=document.createElement('div');modal.className='detail-modal';modal.style.display='flex';
-  modal.innerHTML=`<div class="detail-box"><div class="detail-title">Join Team</div><div class="form-gap"><div><div class="label-sm">Team ID (Admin থেকে নিন)</div><input class="input-field" id="jt-id" placeholder="Team Document ID"></div></div><div style="display:flex;gap:8px;margin-top:16px"><button onclick="this.closest('.detail-modal').remove()" style="flex:1;padding:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border);border-radius:10px;font-weight:700;cursor:pointer">Cancel</button><button onclick="joinTeamById()" style="flex:1;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">🔑 Join</button></div>
+  modal.innerHTML=`<div class="detail-box"><div class="detail-title">Join Team</div><div class="form-gap"><div><div class="label-sm">Team ID (Admin থেকে নিন)</div><input class="input-field" id="jt-id" placeholder="Team Document ID"></div></div><div style="display:flex;gap:8px;margin-top:16px"><button onclick="this.closest('.detail-modal').remove()" style="flex:1;padding:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border);border-radius:10px;font-weight:700;cursor:pointer">Cancel</button><button onclick="joinTeamById()" style="flex:1;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:Barlow Condensed,sans-serif">🔑 Join</button></div></div>`;
+  document.body.appendChild(modal);modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
+}
+
+window.joinTeamById = async function() {
+  const tid=document.getElementById('jt-id')?.value?.trim();if(!tid){showToast('Team ID দিন!');return;}
+  try{
+    const snap=await getDoc(doc(db,'teams',tid));if(!snap.exists()){showToast('❌ Team পাওয়া যায়নি!');return;}
+    const t=snap.data();if((t.members||[]).includes(currentUser.uid)){showToast('⚠️ Already in this team!');return;}
+    await updateDoc(doc(d
